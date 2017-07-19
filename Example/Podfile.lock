@@ -1,0 +1,23 @@
+PODS:
+  - FBSnapshotTestCase (2.1.4):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
+  - FBSnapshotTestCase/Core (2.1.4)
+  - FBSnapshotTestCase/SwiftSupport (2.1.4):
+    - FBSnapshotTestCase/Core
+  - YHJBlueTooth (0.1.0)
+
+DEPENDENCIES:
+  - FBSnapshotTestCase
+  - YHJBlueTooth (from `../`)
+
+EXTERNAL SOURCES:
+  YHJBlueTooth:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+  YHJBlueTooth: e51d853e83af43d855c91df933ce3494cd913448
+
+PODFILE CHECKSUM: a559e558ca3af5a6e43585191ccb25bde0997146
+
+COCOAPODS: 1.2.1

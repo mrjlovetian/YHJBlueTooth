@@ -1,0 +1,6 @@
+framework module YHJBlueTooth {
+  umbrella header "YHJBlueTooth-umbrella.h"
+
+  export *
+  module * { export * }
+}

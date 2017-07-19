@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'YHJBlueTooth_Example' do
+  pod 'YHJBlueTooth', :path => '../'
+
+  target 'YHJBlueTooth_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase'
+  end
+end
