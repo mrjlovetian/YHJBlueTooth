@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MRJBlueTooth'
-  s.version          = '0.1.1'
+  s.version          = '0.1.2'
   s.summary          = 'A short description of MRJBlueTooth.'
 
 # This description is used to generate tags and improve search results.
@@ -24,14 +24,14 @@ TODO: Add long description of the pod here.
   s.homepage         = 'https://github.com/lovetian/YHJBlueTooth'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'yuhongjiang' => 'yuhongjiang@gmail.com' }
+  s.author           = { 'yuhongjiang' => 'mrjlovetian@gmail.com' }
   s.source           = { :git => 'https://github.com/lovetian/YHJBlueTooth.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
 #s.osx.deployment_target = '10.9'
 
-  s.source_files = 'BlueTooth/Classes/**/*'
+  s.source_files = 'MRJBlueTooth/Classes/**/*'
   
   # s.resource_bundles = {
   #   'YHJBlueTooth' => ['YHJBlueTooth/Assets/*.png']
