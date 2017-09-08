@@ -31,7 +31,7 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '8.0'
 #s.osx.deployment_target = '10.9'
 
-  s.source_files = 'MRJ_BlueTooth/Classes/**/*'
+  s.source_files = 'MRJBlueTooth/Classes/**/*'
   
   # s.resource_bundles = {
   #   'YHJBlueTooth' => ['YHJBlueTooth/Assets/*.png']
