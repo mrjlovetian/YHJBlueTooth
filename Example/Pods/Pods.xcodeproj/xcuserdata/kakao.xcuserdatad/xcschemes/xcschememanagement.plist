@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>MRJBlueTooth.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-YHJBlueTooth_Example.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,12 +32,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8EB4C343B0ECC6CCB5E9418196BD9C88</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DA89CDD5CE6EC24EC7E652E185D33391</key>
+		<key>96885ED36F9E1CBE85F387545FF50AD9</key>
 		<dict>
 			<key>primary</key>
 			<true/>

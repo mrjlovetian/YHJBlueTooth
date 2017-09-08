@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MRJBlueTooth'
-  s.version          = '0.1.2'
-  s.summary          = 'A short description of MRJBlueTooth.'
+  s.version          = '0.1.3'
+  s.summary          = 'MRJBlueTooth 一个简单的蓝牙管理系统 .'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -31,7 +31,7 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '8.0'
 #s.osx.deployment_target = '10.9'
 
-  s.source_files = 'MRJBlueTooth/Classes/**/*'
+  s.source_files = 'MRJ_BlueTooth/Classes/**/*'
   
   # s.resource_bundles = {
   #   'YHJBlueTooth' => ['YHJBlueTooth/Assets/*.png']
