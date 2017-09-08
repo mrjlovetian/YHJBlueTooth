@@ -1,5 +1,5 @@
 /*
- BabyBluetooth
+ Bluetooth
  简单易用的蓝牙ble库，基于CoreBluetooth  
   
  */
@@ -8,14 +8,14 @@
 //  Copyright (c) 2015年 余洪江. All rights reserved.
 //
 
-#import "BabyCentralManager.h"
-#import "BabyCallback.h"
+#import "CentralManager.h"
+#import "Callback.h"
 
 
 
-@implementation BabyCentralManager
+@implementation CentralManager
 
-#define currChannel [babySpeaker callbackOnCurrChannel]
+#define currChannel [speaker callbackOnCurrChannel]
 
 - (instancetype)init {
     self = [super init];
@@ -27,7 +27,7 @@
                                  //蓝牙power没打开时alert提示框
                                  [NSNumber numberWithBool:YES],CBCentralManagerOptionShowPowerAlertKey,
                                  //重设centralManager恢复的IdentifierKey
-                                 @"babyBluetoothRestore",CBCentralManagerOptionRestoreIdentifierKey,
+                                 @"BluetoothRestore",CBCentralManagerOptionRestoreIdentifierKey,
                                  nil];
         
 #else
@@ -60,12 +60,12 @@
 
 //扫描Peripherals
 - (void)scanPeripherals {
-    [centralManager scanForPeripheralsWithServices:[currChannel babyOptions].scanForPeripheralsWithServices options:[currChannel babyOptions].scanForPeripheralsWithOptions];
+    [centralManager scanForPeripheralsWithServices:[currChannel Options].scanForPeripheralsWithServices options:[currChannel Options].scanForPeripheralsWithOptions];
 }
 
 //连接Peripherals
 - (void)connectToPeripheral:(CBPeripheral *)peripheral{
-    [centralManager connectPeripheral:peripheral options:[currChannel babyOptions].connectPeripheralWithOptions];
+    [centralManager connectPeripheral:peripheral options:[currChannel Options].connectPeripheralWithOptions];
 }
 
 //断开设备连接
@@ -95,27 +95,27 @@
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
     
     //发送通知
-    [[NSNotificationCenter defaultCenter]postNotificationName:BabyNotificationAtCentralManagerDidUpdateState object:@{@"central":central}];
+    [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtCentralManagerDidUpdateState object:@{@"central":central}];
     
     switch (central.state) {
         case CBCentralManagerStateUnknown:
-            BabyLog(@">>>CBCentralManagerStateUnknown");
+            Log(@">>>CBCentralManagerStateUnknown");
             break;
         case CBCentralManagerStateResetting:
-            BabyLog(@">>>CBCentralManagerStateResetting");
+            Log(@">>>CBCentralManagerStateResetting");
             break;
         case CBCentralManagerStateUnsupported:
-            BabyLog(@">>>CBCentralManagerStateUnsupported");
+            Log(@">>>CBCentralManagerStateUnsupported");
             break;
         case CBCentralManagerStateUnauthorized:
-            BabyLog(@">>>CBCentralManagerStateUnauthorized");
+            Log(@">>>CBCentralManagerStateUnauthorized");
             break;
         case CBCentralManagerStatePoweredOff:
-            BabyLog(@">>>CBCentralManagerStatePoweredOff");
+            Log(@">>>CBCentralManagerStatePoweredOff");
             break;
         case CBCentralManagerStatePoweredOn:
-            BabyLog(@">>>CBCentralManagerStatePoweredOn");
-            [[NSNotificationCenter defaultCenter]postNotificationName:BabyNotificationAtCentralManagerEnable object:@{@"central":central}];
+            Log(@">>>CBCentralManagerStatePoweredOn");
+            [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtCentralManagerEnable object:@{@"central":central}];
             break;
         default:
             break;
@@ -134,17 +134,17 @@
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
     
     //日志
-    //BabyLog(@"当扫描到设备:%@",peripheral.name);
+    //Log(@"当扫描到设备:%@",peripheral.name);
     [self addDiscoverPeripheral:peripheral];
     
     //发出通知
-    [[NSNotificationCenter defaultCenter]postNotificationName:BabyNotificationAtDidDiscoverPeripheral
+    [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidDiscoverPeripheral
                                                        object:@{@"central":central,@"peripheral":peripheral,@"advertisementData":advertisementData,@"RSSI":RSSI}];
     //扫描到设备callback
     if ([currChannel filterOnDiscoverPeripherals]) {
         if ([currChannel filterOnDiscoverPeripherals](peripheral.name,advertisementData,RSSI)) {
             if ([currChannel blockOnDiscoverPeripherals]) {
-                [[babySpeaker callbackOnCurrChannel] blockOnDiscoverPeripherals](central,peripheral,advertisementData,RSSI);
+                [[speaker callbackOnCurrChannel] blockOnDiscoverPeripherals](central,peripheral,advertisementData,RSSI);
             }
         }
     }
@@ -152,7 +152,7 @@
     //处理连接设备
     if (needConnectPeripheral) {
         if ([currChannel filterOnconnectToPeripherals](peripheral.name,advertisementData,RSSI)) {
-            [centralManager connectPeripheral:peripheral options:[currChannel babyOptions].connectPeripheralWithOptions];
+            [centralManager connectPeripheral:peripheral options:[currChannel Options].connectPeripheralWithOptions];
             //开一个定时器监控连接超时的情况
             connectTimer = [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(disconnect:) userInfo:peripheral repeats:NO];
         }
@@ -168,13 +168,13 @@
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     
     //发出通知
-    [[NSNotificationCenter defaultCenter]postNotificationName:BabyNotificationAtDidConnectPeripheral
+    [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidConnectPeripheral
                                                        object:@{@"central":central,@"peripheral":peripheral}];
     
     //设置委托
     [peripheral setDelegate:self];
     
-    //BabyLog(@">>>连接到名称为（%@）的设备-成功",peripheral.name);
+    //Log(@">>>连接到名称为（%@）的设备-成功",peripheral.name);
     [connectTimer invalidate];//停止时钟
     [self addPeripheral:peripheral];
     
@@ -186,7 +186,7 @@
     
     //扫描外设的服务
     if (needDiscoverServices) {
-        [peripheral discoverServices:[currChannel babyOptions].discoverWithServices];
+        [peripheral discoverServices:[currChannel Options].discoverWithServices];
         //discoverIncludedServices
     }
     
@@ -195,10 +195,10 @@
 //连接到Peripherals-失败
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     //发出通知
-    [[NSNotificationCenter defaultCenter]postNotificationName:BabyNotificationAtDidFailToConnectPeripheral
+    [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidFailToConnectPeripheral
                                                        object:@{@"central":central,@"peripheral":peripheral,@"error":error?error:@""}];
  
-    //    BabyLog(@">>>连接到名称为（%@）的设备-失败,原因:%@",[peripheral name],[error localizedDescription]);
+    //    Log(@">>>连接到名称为（%@）的设备-失败,原因:%@",[peripheral name],[error localizedDescription]);
     if ([currChannel blockOnFailToConnect]) {
         [currChannel blockOnFailToConnect](central,peripheral,error);
     }
@@ -207,13 +207,13 @@
 //Peripherals断开连接
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     //发出通知
-    [[NSNotificationCenter defaultCenter]postNotificationName:BabyNotificationAtDidDisconnectPeripheral
+    [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidDisconnectPeripheral
                                                        object:@{@"central":central,@"peripheral":peripheral,@"error":error?error:@""}];
     
-    //    BabyLog(@">>>外设连接断开连接 %@: %@\n", [peripheral name], [error localizedDescription]);
+    //    Log(@">>>外设连接断开连接 %@: %@\n", [peripheral name], [error localizedDescription]);
     if (error)
     {
-        BabyLog(@">>> didDisconnectPeripheral for %@ with error: %@", peripheral.name, [error localizedDescription]);
+        Log(@">>> didDisconnectPeripheral for %@ with error: %@", peripheral.name, [error localizedDescription]);
     }
     
     [self deletePeripheral:peripheral];
@@ -227,7 +227,7 @@
         if ([currChannel blockOnCancelAllPeripheralsConnection]) {
             [currChannel blockOnCancelAllPeripheralsConnection](centralManager);
         }
-        //    BabyLog(@">>> stopConnectAllPerihperals");
+        //    Log(@">>> stopConnectAllPerihperals");
     }
     
     //检查并重新连接需要重连的设备
@@ -240,12 +240,12 @@
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
     
     //发出通知
-    [[NSNotificationCenter defaultCenter]postNotificationName:BabyNotificationAtDidDiscoverServices
+    [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidDiscoverServices
                                                        object:@{@"peripheral":peripheral,@"error":error?error:@""}];
     
-    //  BabyLog(@">>>扫描到服务：%@",peripheral.services);
+    //  Log(@">>>扫描到服务：%@",peripheral.services);
     if (error) {
-        BabyLog(@">>>didDiscoverServices for %@ with error: %@", peripheral.name, [error localizedDescription]);
+        Log(@">>>didDiscoverServices for %@ with error: %@", peripheral.name, [error localizedDescription]);
     }
     //回叫block
     if ([currChannel blockOnDiscoverServices]) {
@@ -255,7 +255,7 @@
     //discover characteristics
     if (needDiscoverCharacteristics) {
         for (CBService *service in peripheral.services) {
-            [peripheral discoverCharacteristics:[currChannel babyOptions].discoverWithCharacteristics forService:service];
+            [peripheral discoverCharacteristics:[currChannel Options].discoverWithCharacteristics forService:service];
         }
     }
 }
@@ -264,12 +264,12 @@
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error {
 
     //发出通知
-    [[NSNotificationCenter defaultCenter]postNotificationName:BabyNotificationAtDidDiscoverCharacteristicsForService
+    [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidDiscoverCharacteristicsForService
                                                        object:@{@"peripheral":peripheral,@"service":service,@"error":error?error:@""}];
     
     
     if (error) {
-        BabyLog(@"error didDiscoverCharacteristicsForService for %@ with error: %@", service.UUID, [error localizedDescription]);
+        Log(@"error didDiscoverCharacteristicsForService for %@ with error: %@", service.UUID, [error localizedDescription]);
         //        return;
     }
     //回叫block
@@ -300,16 +300,16 @@
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
     
     //发出通知
-    [[NSNotificationCenter defaultCenter]postNotificationName:BabyNotificationAtDidUpdateValueForCharacteristic
+    [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidUpdateValueForCharacteristic
                                                        object:@{@"peripheral":peripheral,@"characteristic":characteristic,@"error":error?error:@""}];
     
     if (error) {
-        BabyLog(@"error didUpdateValueForCharacteristic %@ with error: %@", characteristic.UUID, [error localizedDescription]);
+        Log(@"error didUpdateValueForCharacteristic %@ with error: %@", characteristic.UUID, [error localizedDescription]);
         //        return;
     }
     //查找字段订阅
-    if ([babySpeaker notifyCallback:characteristic]) {
-        [babySpeaker notifyCallback:characteristic](peripheral,characteristic,error);
+    if ([speaker notifyCallback:characteristic]) {
+        [speaker notifyCallback:characteristic](peripheral,characteristic,error);
         return;
     }
     //回叫block
@@ -322,7 +322,7 @@
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverDescriptorsForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
     
     if (error) {
-        BabyLog(@"error Discovered DescriptorsForCharacteristic for %@ with error: %@", characteristic.UUID, [error localizedDescription]);
+        Log(@"error Discovered DescriptorsForCharacteristic for %@ with error: %@", characteristic.UUID, [error localizedDescription]);
         //        return;
     }
     //回叫block
@@ -350,7 +350,7 @@
     
     
     if (error) {
-        BabyLog(@"error didUpdateValueForDescriptor  for %@ with error: %@", descriptor.UUID, [error localizedDescription]);
+        Log(@"error didUpdateValueForDescriptor  for %@ with error: %@", descriptor.UUID, [error localizedDescription]);
         //        return;
     }
     //回叫block
@@ -361,18 +361,18 @@
 
 - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
     
-    [[NSNotificationCenter defaultCenter]postNotificationName:BabyNotificationAtDidWriteValueForCharacteristic object:@{@"characteristic":characteristic,@"error":error?error:@""}];
+    [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidWriteValueForCharacteristic object:@{@"characteristic":characteristic,@"error":error?error:@""}];
     
-    //    BabyLog(@">>>didWriteValueForCharacteristic");
-    //    BabyLog(@">>>uuid:%@,new value:%@",characteristic.UUID,characteristic.value);
+    //    Log(@">>>didWriteValueForCharacteristic");
+    //    Log(@">>>uuid:%@,new value:%@",characteristic.UUID,characteristic.value);
     if ([currChannel blockOnDidWriteValueForCharacteristic]) {
         [currChannel blockOnDidWriteValueForCharacteristic](characteristic,error);
     }
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForDescriptor:(CBDescriptor *)descriptor error:(NSError *)error {
-    //    BabyLog(@">>>didWriteValueForCharacteristic");
-    //    BabyLog(@">>>uuid:%@,new value:%@",descriptor.UUID,descriptor.value);
+    //    Log(@">>>didWriteValueForCharacteristic");
+    //    Log(@">>>uuid:%@,new value:%@",descriptor.UUID,descriptor.value);
     if ([currChannel blockOnDidWriteValueForDescriptor]) {
         [currChannel blockOnDidWriteValueForDescriptor](descriptor,error);
     }
@@ -381,10 +381,10 @@
 //characteristic.isNotifying 状态改变
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
     
-    [[NSNotificationCenter defaultCenter]postNotificationName:BabyNotificationAtDidUpdateNotificationStateForCharacteristic object:@{@"characteristic":characteristic,@"error":error?error:@""}];
+    [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidUpdateNotificationStateForCharacteristic object:@{@"characteristic":characteristic,@"error":error?error:@""}];
     
-    BabyLog(@">>>didUpdateNotificationStateForCharacteristic");
-    BabyLog(@">>>uuid:%@,isNotifying:%@",characteristic.UUID,characteristic.isNotifying?@"isNotifying":@"Notifying");
+    Log(@">>>didUpdateNotificationStateForCharacteristic");
+    Log(@">>>uuid:%@,isNotifying:%@",characteristic.UUID,characteristic.isNotifying?@"isNotifying":@"Notifying");
     if ([currChannel blockOnDidUpdateNotificationStateForCharacteristic]) {
         [currChannel blockOnDidUpdateNotificationStateForCharacteristic](characteristic,error);
     }
@@ -398,18 +398,18 @@
 
 # if  __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_8_0
 - (void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(nullable NSError *)error {
-    [[NSNotificationCenter defaultCenter]postNotificationName:BabyNotificationAtDidReadRSSI object:@{@"peripheral":peripheral,@"RSSI":peripheral.RSSI,@"error":error?error:@""}];
+    [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidReadRSSI object:@{@"peripheral":peripheral,@"RSSI":peripheral.RSSI,@"error":error?error:@""}];
     
-    BabyLog(@">>>peripheralDidUpdateRSSI -> RSSI:%@",peripheral.RSSI);
+    Log(@">>>peripheralDidUpdateRSSI -> RSSI:%@",peripheral.RSSI);
     if ([currChannel blockOnDidReadRSSI]) {
         [currChannel blockOnDidReadRSSI](peripheral.RSSI,error);
     }
 }
 #else
 - (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error {
-    [[NSNotificationCenter defaultCenter]postNotificationName:BabyNotificationAtDidReadRSSI object:@{@"peripheral":peripheral,@"RSSI":RSSI?RSSI:@100,@"error":error?error:@""}];
+    [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidReadRSSI object:@{@"peripheral":peripheral,@"RSSI":RSSI?RSSI:@100,@"error":error?error:@""}];
     
-    BabyLog(@">>>peripheralDidUpdateRSSI -> RSSI:%@",RSSI);
+    Log(@">>>peripheralDidUpdateRSSI -> RSSI:%@",RSSI);
     if ([currChannel blockOnDidReadRSSI]) {
         [currChannel blockOnDidReadRSSI](RSSI,error);
     }

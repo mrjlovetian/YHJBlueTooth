@@ -1,5 +1,5 @@
 /*
- BabyBluetooth
+ Bluetooth
  简单易用的蓝牙ble库，基于CoreBluetooth  
   
 
@@ -13,13 +13,13 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
-#import "BabyToy.h"
-#import "BabySpeaker.h"
-#import "BabyDefine.h"
+#import "Toy.h"
+#import "Speaker.h"
+#import "Define.h"
 
 
 
-@interface BabyCentralManager : NSObject<CBCentralManagerDelegate,CBPeripheralDelegate> {
+@interface CentralManager : NSObject<CBCentralManagerDelegate,CBPeripheralDelegate> {
 
 @public
 
@@ -44,7 +44,7 @@
     //主设备
     CBCentralManager *centralManager;
     //回叫方法
-    BabySpeaker *babySpeaker;
+    Speaker *speaker;
     
 @private
     //已经连接的设备

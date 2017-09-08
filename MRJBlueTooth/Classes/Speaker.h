@@ -1,9 +1,9 @@
 /*
- BabyBluetooth
+ Bluetooth
  简单易用的蓝牙ble库，基于CoreBluetooth  
   
  
- @brief  babybluetooth block查找和channel切换
+ @brief  bluetooth block查找和channel切换
 
  */
 
@@ -11,16 +11,16 @@
 //  Copyright (c) 2015年 余洪江. All rights reserved.
 //
 
-#import "BabyCallback.h"
+#import "Callback.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 
 
-@interface BabySpeaker : NSObject
+@interface Speaker : NSObject
 
-- (BabyCallback *)callback;
-- (BabyCallback *)callbackOnCurrChannel;
-- (BabyCallback *)callbackOnChnnel:(NSString *)channel;
-- (BabyCallback *)callbackOnChnnel:(NSString *)channel
+- (Callback *)callback;
+- (Callback *)callbackOnCurrChannel;
+- (Callback *)callbackOnChnnel:(NSString *)channel;
+- (Callback *)callbackOnChnnel:(NSString *)channel
                createWhenNotExist:(BOOL)createWhenNotExist;
 
 //切换频道

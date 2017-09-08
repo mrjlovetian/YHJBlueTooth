@@ -1,0 +1,6 @@
+framework module MRJBlueTooth {
+  umbrella header "MRJBlueTooth-umbrella.h"
+
+  export *
+  module * { export * }
+}

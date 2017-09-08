@@ -1,9 +1,9 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
-## YHJBlueTooth
+## MRJBlueTooth
 
-Copyright (c) 2017 mrjyuhongjiang <mrjyuhongjiang@gmail.com>
+Copyright (c) 2017 yuhongjiang <yuhongjiang@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

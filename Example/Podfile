@@ -1,7 +1,7 @@
 use_frameworks!
 
 target 'YHJBlueTooth_Example' do
-  pod 'YHJBlueTooth', :path => '../'
+  pod 'MRJBlueTooth', :path => '../'
 
   target 'YHJBlueTooth_Tests' do
     inherit! :search_paths

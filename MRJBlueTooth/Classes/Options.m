@@ -1,14 +1,14 @@
 //
-//  BabyClothes.m
-//  BabyBluetoothAppDemo
+//  Clothes.m
+//  BluetoothAppDemo
 //
 //  Created by 余洪江 on  17/07/177.
 //  Copyright © 2015年 余洪江. All rights reserved.
 //
 
-#import "BabyOptions.h"
+#import "Options.h"
 
-@implementation BabyOptions
+@implementation Options
 
 - (instancetype)init {
     self = [super init];

@@ -1,17 +1,17 @@
 //
-//  BabyPeripheralManager.m
+//  PeripheralManager.m
 //  BluetoothStubOnIOS
 //
 //  Created by 余洪江 on  17/07/17.
 //  Copyright © 2015年 余洪江. All rights reserved.
 //
 
-#import "BabyPeripheralManager.h"
-#import "BabyDefine.h"
+#import "PeripheralManager.h"
+#import "Define.h"
 
-#define callbackBlock(...) if ([[babySpeaker callback] __VA_ARGS__])   [[babySpeaker callback] __VA_ARGS__ ]
+#define callbackBlock(...) if ([[speaker callback] __VA_ARGS__])   [[speaker callback] __VA_ARGS__ ]
 
-@implementation BabyPeripheralManager {
+@implementation PeripheralManager {
     int PERIPHERAL_MANAGER_INIT_WAIT_TIMES;
     int didAddServices;
     NSTimer *addServiceTask;
@@ -20,15 +20,15 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _localName = @"baby-default-name";
+        _localName = @"-default-name";
         _peripheralManager = [[CBPeripheralManager alloc]initWithDelegate:self queue:nil options:nil];
     }
     return  self;    
 }
 
 
-- (BabyPeripheralManager *(^)())startAdvertising {
-    return ^BabyPeripheralManager *() {
+- (PeripheralManager *(^)())startAdvertising {
+    return ^PeripheralManager *() {
         
         if ([self canStartAdvertising]) {
             PERIPHERAL_MANAGER_INIT_WAIT_TIMES = 0;
@@ -56,21 +56,21 @@
         else {
             PERIPHERAL_MANAGER_INIT_WAIT_TIMES++;
             if (PERIPHERAL_MANAGER_INIT_WAIT_TIMES > 5) {
-                BabyLog(@">>>error： 第%d次等待peripheralManager打开任然失败，请检查蓝牙设备是否可用",PERIPHERAL_MANAGER_INIT_WAIT_TIMES);
+                Log(@">>>error： 第%d次等待peripheralManager打开任然失败，请检查蓝牙设备是否可用",PERIPHERAL_MANAGER_INIT_WAIT_TIMES);
             }
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 3.0 * NSEC_PER_SEC);
             dispatch_after(popTime, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 self.startAdvertising();
             });
-            BabyLog(@">>> 第%d次等待peripheralManager打开",PERIPHERAL_MANAGER_INIT_WAIT_TIMES);
+            Log(@">>> 第%d次等待peripheralManager打开",PERIPHERAL_MANAGER_INIT_WAIT_TIMES);
         }
         
         return self;
     };
 }
 
-- (BabyPeripheralManager *(^)())stopAdvertising {
-    return ^BabyPeripheralManager*() {
+- (PeripheralManager *(^)())stopAdvertising {
+    return ^PeripheralManager*() {
         [_peripheralManager stopAdvertising];
         return self;
     };
@@ -93,24 +93,24 @@
     return YES;
 }
 
-- (BabyPeripheralManager *(^)(NSArray *array))addServices {
-    return ^BabyPeripheralManager*(NSArray *array) {
+- (PeripheralManager *(^)(NSArray *array))addServices {
+    return ^PeripheralManager*(NSArray *array) {
         _services = [NSMutableArray arrayWithArray:array];
         [self addServicesToPeripheral];
         return self;
     };
 }
 
-- (BabyPeripheralManager *(^)())removeAllServices {
-    return ^BabyPeripheralManager*() {
+- (PeripheralManager *(^)())removeAllServices {
+    return ^PeripheralManager*() {
         didAddServices = 0;
         [_peripheralManager removeAllServices];
         return self;
     };
 }
 
-- (BabyPeripheralManager *(^)(NSData *data))addManufacturerData {
-    return ^BabyPeripheralManager*(NSData *data) {
+- (PeripheralManager *(^)(NSData *data))addManufacturerData {
+    return ^PeripheralManager*(NSData *data) {
         _manufacturerData = data;
         return self;
     };
@@ -133,22 +133,22 @@
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral {
     switch (peripheral.state) {
         case CBPeripheralManagerStateUnknown:
-            BabyLog(@">>>CBPeripheralManagerStateUnknown");
+            Log(@">>>CBPeripheralManagerStateUnknown");
             break;
         case CBPeripheralManagerStateResetting:
-            BabyLog(@">>>CBPeripheralManagerStateResetting");
+            Log(@">>>CBPeripheralManagerStateResetting");
             break;
         case CBPeripheralManagerStateUnsupported:
-            BabyLog(@">>>CBPeripheralManagerStateUnsupported");
+            Log(@">>>CBPeripheralManagerStateUnsupported");
             break;
         case CBPeripheralManagerStateUnauthorized:
-            BabyLog(@">>>CBPeripheralManagerStateUnauthorized");
+            Log(@">>>CBPeripheralManagerStateUnauthorized");
             break;
         case CBPeripheralManagerStatePoweredOff:
-            BabyLog(@">>>CBPeripheralManagerStatePoweredOff");
+            Log(@">>>CBPeripheralManagerStatePoweredOff");
             break;
         case CBPeripheralManagerStatePoweredOn:
-            BabyLog(@">>>CBPeripheralManagerStatePoweredOn");
+            Log(@">>>CBPeripheralManagerStatePoweredOn");
             //发送centralManagerDidUpdateState通知
             [[NSNotificationCenter defaultCenter]postNotificationName:@"CBPeripheralManagerStatePoweredOn" object:nil];
             break;
@@ -156,7 +156,7 @@
             break;
     }
 
-//    if([babySpeaker callback] blockOnPeripheralModelDidUpdateState) {
+//    if([Speaker callback] blockOnPeripheralModelDidUpdateState) {
 //        [currChannel blockOnCancelScan](centralManager);
 //    }
     callbackBlock(blockOnPeripheralModelDidUpdateState)(peripheral);

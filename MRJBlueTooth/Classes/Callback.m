@@ -1,5 +1,5 @@
 /*
- BabyBluetooth
+ Bluetooth
  简单易用的蓝牙ble库，基于CoreBluetooth  
   
  */
@@ -8,9 +8,9 @@
 //  Copyright (c) 2015年 余洪江. All rights reserved.
 //
 
-#import "BabyCallback.h"
+#import "Callback.h"
 
-@implementation BabyCallback
+@implementation Callback
 
 
 - (instancetype)init {

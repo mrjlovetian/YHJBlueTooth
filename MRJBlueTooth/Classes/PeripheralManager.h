@@ -1,5 +1,5 @@
 /*
- BabyBluetooth
+ Bluetooth
  简单易用的蓝牙ble库，基于CoreBluetooth  
   
  
@@ -14,40 +14,40 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
-#import "BabyToy.h"
-#import "BabySpeaker.h"
+#import "Toy.h"
+#import "Speaker.h"
 
 
-@interface BabyPeripheralManager : NSObject<CBPeripheralManagerDelegate> {
+@interface PeripheralManager : NSObject<CBPeripheralManagerDelegate> {
 
 @public
     //回叫方法
-    BabySpeaker *babySpeaker;
+    Speaker *speaker;
 }
 
 /**
  添加服务
  */
-- (BabyPeripheralManager *(^)(NSArray *array))addServices;
+- (PeripheralManager *(^)(NSArray *array))addServices;
 
 /**
  添加广播包数据
  */
-- (BabyPeripheralManager *(^)(NSData *data))addManufacturerData;
+- (PeripheralManager *(^)(NSData *data))addManufacturerData;
 /**
  移除广播包数据
  */
-- (BabyPeripheralManager *(^)())removeAllServices;
+- (PeripheralManager *(^)())removeAllServices;
 
 /**
 启动广播
  */
-- (BabyPeripheralManager *(^)())startAdvertising;
+- (PeripheralManager *(^)())startAdvertising;
 
 /**
  停止广播
  */
-- (BabyPeripheralManager *(^)())stopAdvertising;
+- (PeripheralManager *(^)())stopAdvertising;
 
 //外设管理器
 @property (nonatomic, strong) CBPeripheralManager *peripheralManager;

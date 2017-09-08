@@ -1,9 +1,9 @@
 /*
- BabyBluetooth
+ Bluetooth
  简单易用的蓝牙ble库，基于CoreBluetooth  
   
  
- @brief  babybluetooth 封装蓝牙外设模式的运行时参数，可以实现后台模式，重复接收广播，查找service参数，查找characteristic参数
+ @brief  bluetooth 封装蓝牙外设模式的运行时参数，可以实现后台模式，重复接收广播，查找service参数，查找characteristic参数
  
  */
 
@@ -14,7 +14,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
-@interface BabyOptions : NSObject
+@interface Options : NSObject
 
 #pragma mark - 属性
 /*!

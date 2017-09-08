@@ -1,9 +1,9 @@
 /*
- BabyBluetooth
+ Bluetooth
  简单易用的蓝牙ble库，基于CoreBluetooth  
   
  
- @brief  babybluetooth Rhythm用于检测蓝牙的任务执行情况，处理复杂的蓝牙流程操作
+ @brief  bluetooth Rhythm用于检测蓝牙的任务执行情况，处理复杂的蓝牙流程操作
  
  */
 //
@@ -12,14 +12,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BabyDefine.h"
+#import "Define.h"
 
 
-@interface BabyRhythm : NSObject
+@interface Rhythm : NSObject
 
 
-typedef void (^BBBeatsBreakBlock)(BabyRhythm *bry);
-typedef void (^BBBeatsOverBlock)(BabyRhythm *bry);
+typedef void (^BBBeatsBreakBlock)(Rhythm *bry);
+typedef void (^BBBeatsOverBlock)(Rhythm *bry);
 
 //timer for beats
 @property (nonatomic, strong) NSTimer *beatsTimer;
@@ -40,8 +40,8 @@ typedef void (^BBBeatsOverBlock)(BabyRhythm *bry);
 - (void)beatsRestart;
 
 //心跳中断的委托
-- (void)setBlockOnBeatsBreak:(void(^)(BabyRhythm *bry))block;
+- (void)setBlockOnBeatsBreak:(void(^)(Rhythm *bry))block;
 //心跳结束的委托
-- (void)setBlockOnBeatsOver:(void(^)(BabyRhythm *bry))block;
+- (void)setBlockOnBeatsOver:(void(^)(Rhythm *bry))block;
 
 @end

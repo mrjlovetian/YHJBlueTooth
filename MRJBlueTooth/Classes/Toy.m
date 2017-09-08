@@ -1,5 +1,5 @@
 /*
- BabyBluetooth
+ Bluetooth
  简单易用的蓝牙ble库，基于CoreBluetooth  
   
  */
@@ -8,9 +8,9 @@
 //  Copyright (c) 2015年 余洪江. All rights reserved.
 //
 
-#import "BabyToy.h"
+#import "Toy.h"
 
-@implementation BabyToy
+@implementation Toy
 
 
 //十六进制转换为普通字符串的。
@@ -26,7 +26,7 @@
         myBuffer[i / 2] = (char)anInt;
     }
     NSString *unicodeString = [NSString stringWithCString:myBuffer encoding:4];
-//    BabyLog(@"===字符串===%@",unicodeString);
+//    Log(@"===字符串===%@",unicodeString);
     return unicodeString;
 }
 
@@ -68,7 +68,7 @@
 //十六进制转换为普通字符串的。
 + (NSData *)ConvertHexStringToData:(NSString *)hexString {
     
-    NSData *data = [[BabyToy ConvertHexStringToString:hexString] dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = [[Toy ConvertHexStringToString:hexString] dataUsingEncoding:NSUTF8StringEncoding];
     return data;
 }
 

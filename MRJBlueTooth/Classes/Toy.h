@@ -1,8 +1,8 @@
 /*
- BabyBluetooth
+ Bluetooth
  简单易用的蓝牙ble库，基于CoreBluetooth
 
- @brief  babybluetooth 工具类
+ @brief  bluetooth 工具类
  
  */
 
@@ -15,7 +15,7 @@
 
 
 
-@interface BabyToy : NSObject
+@interface Toy : NSObject
 
 //十六进制转换为普通字符串的。
 + (NSString *)ConvertHexStringToString:(NSString *)hexString;

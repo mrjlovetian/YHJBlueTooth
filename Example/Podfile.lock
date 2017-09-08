@@ -4,20 +4,20 @@ PODS:
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - YHJBlueTooth (0.1.0)
+  - MRJBlueTooth (0.1.0)
 
 DEPENDENCIES:
   - FBSnapshotTestCase
-  - YHJBlueTooth (from `../`)
+  - MRJBlueTooth (from `../`)
 
 EXTERNAL SOURCES:
-  YHJBlueTooth:
-    :path: "../"
+  MRJBlueTooth:
+    :path: ../
 
 SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  YHJBlueTooth: e51d853e83af43d855c91df933ce3494cd913448
+  MRJBlueTooth: a9567dc7c35d00146884905ec33004ce815d0379
 
-PODFILE CHECKSUM: a559e558ca3af5a6e43585191ccb25bde0997146
+PODFILE CHECKSUM: 053c53f4688d6eeabd3a1260b07f608b5973f45e
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1

@@ -2,8 +2,8 @@
 //  YHJAppDelegate.m
 //  YHJBlueTooth
 //
-//  Created by mrjyuhongjiang on 07/19/2017.
-//  Copyright (c) 2017 mrjyuhongjiang. All rights reserved.
+//  Created by yuhongjiang on 07/19/2017.
+//  Copyright (c) 2017 yuhongjiang. All rights reserved.
 //
 
 #import "YHJAppDelegate.h"

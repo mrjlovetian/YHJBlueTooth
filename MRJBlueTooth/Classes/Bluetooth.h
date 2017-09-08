@@ -1,5 +1,5 @@
 /*
- BabyBluetooth
+ Bluetooth
  简单易用的蓝牙ble库，基于CoreBluetooth 
  version:0.7.0
  */
@@ -11,17 +11,17 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
-#import "BabyCentralManager.h"
-#import "BabyPeripheralManager.h"
-#import "BabyToy.h"
-#import "BabySpeaker.h"
-#import "BabyRhythm.h"
-#import "BabyDefine.h"
+#import "CentralManager.h"
+#import "PeripheralManager.h"
+#import "Toy.h"
+#import "Speaker.h"
+#import "Rhythm.h"
+#import "Define.h"
 
 
-@interface BabyBluetooth : NSObject
+@interface Bluetooth : NSObject
 
-#pragma mark - babybluetooth的委托
+#pragma mark - bluetooth的委托
 
 //默认频道的委托
 
@@ -108,8 +108,8 @@ characteristic订阅状态改变的block
 - (void)setBlockOnDidReadRSSI:(void (^)(NSNumber *RSSI,NSError *error))block;
 
 /**
-discoverIncludedServices的回调，暂时在babybluetooth中无作用
-|  no used in babybluetooth 
+discoverIncludedServices的回调，暂时在bluetooth中无作用
+|  no used in bluetooth 
 */
 - (void)setBlockOnDidDiscoverIncludedServicesForService:(void (^)(CBService *service,NSError *error))block;
 
@@ -232,8 +232,8 @@ characteristic订阅状态改变的block
                                 block:(void (^)(NSNumber *RSSI,NSError *error))block;
 
 /**
-discoverIncludedServices的回调，暂时在babybluetooth中无作用
-|  no used in babybluetooth 
+discoverIncludedServices的回调，暂时在bluetooth中无作用
+|  no used in bluetooth 
 */
 - (void)setBlockOnDidDiscoverIncludedServicesForServiceAtChannel:(NSString *)channel
                                                           block:(void (^)(CBService *service,NSError *error))block;
@@ -253,7 +253,7 @@ discoverIncludedServices的回调，暂时在babybluetooth中无作用
                                       block:(void (^)(CBPeripheral *peripheral,NSArray *invalidatedServices))block;
 
 
-#pragma mark - babybluetooth filter
+#pragma mark - bluetooth filter
 
 /**
 设置查找Peripherals的规则
@@ -283,29 +283,29 @@ discoverIncludedServices的回调，暂时在babybluetooth中无作用
                                      filter:(BOOL (^)(NSString *peripheralName, NSDictionary *advertisementData, NSNumber *RSSI))filter;
 
 
-#pragma mark - babybluetooth Special
+#pragma mark - bluetooth Special
 
 /**
-babyBluettooth cancelScan方法调用后的回调
+Bluettooth cancelScan方法调用后的回调
 |  when after call cancelScan 
 */
 - (void)setBlockOnCancelScanBlock:(void(^)(CBCentralManager *centralManager))block;
 
 /**
-babyBluettooth cancelAllPeripheralsConnectionBlock 方法执行后并且全部设备断开后的回调
+Bluettooth cancelAllPeripheralsConnectionBlock 方法执行后并且全部设备断开后的回调
 |  when did all peripheral disConnect 
 */
 - (void)setBlockOnCancelAllPeripheralsConnectionBlock:(void(^)(CBCentralManager *centralManager))block;
 
 /**
-babyBluettooth cancelScan方法调用后的回调
+Bluettooth cancelScan方法调用后的回调
 |  when after call cancelScan 
 */
 - (void)setBlockOnCancelScanBlockAtChannel:(NSString *)channel
                                          block:(void(^)(CBCentralManager *centralManager))block;
 
 /**
-babyBluettooth cancelAllPeripheralsConnectionBlock 方法执行后并且全部设备断开后的回调
+Bluettooth cancelAllPeripheralsConnectionBlock 方法执行后并且全部设备断开后的回调
 |  when did all peripheral disConnect 
 */
 - (void)setBlockOnCancelAllPeripheralsConnectionBlockAtChannel:(NSString *)channel
@@ -338,70 +338,70 @@ scanForPeripheralsWithServices:(NSArray *)scanForPeripheralsWithServices
 /**
 查找Peripherals
  */
-- (BabyBluetooth *(^)()) scanForPeripherals;
+- (Bluetooth *(^)()) scanForPeripherals;
 
 /**
 连接Peripherals
  */
-- (BabyBluetooth *(^)()) connectToPeripherals;
+- (Bluetooth *(^)()) connectToPeripherals;
 
 /**
 发现Services
  */
-- (BabyBluetooth *(^)()) discoverServices;
+- (Bluetooth *(^)()) discoverServices;
 
 /**
 获取Characteristics
  */
-- (BabyBluetooth *(^)()) discoverCharacteristics;
+- (Bluetooth *(^)()) discoverCharacteristics;
 
 /**
 更新Characteristics的值
  */
-- (BabyBluetooth *(^)()) readValueForCharacteristic;
+- (Bluetooth *(^)()) readValueForCharacteristic;
 
 /**
 获取Characteristics的名称
  */
-- (BabyBluetooth *(^)()) discoverDescriptorsForCharacteristic;
+- (Bluetooth *(^)()) discoverDescriptorsForCharacteristic;
 
 /**
 获取Descriptors的值
  */
-- (BabyBluetooth *(^)()) readValueForDescriptors;
+- (Bluetooth *(^)()) readValueForDescriptors;
 
 /**
 开始执行
  */
-- (BabyBluetooth *(^)()) begin;
+- (Bluetooth *(^)()) begin;
 
 /**
 sec秒后停止
  */
-- (BabyBluetooth *(^)(int sec)) stop;
+- (Bluetooth *(^)(int sec)) stop;
 
 /**
 持有对象
  */
-- (BabyBluetooth *(^)(id obj)) having;
+- (Bluetooth *(^)(id obj)) having;
 
 /**
 切换委托的频道
  */
-- (BabyBluetooth *(^)(NSString *channel)) channel;
+- (Bluetooth *(^)(NSString *channel)) channel;
 
 /**
 谓词，返回self
  */
-- (BabyBluetooth *) and;
+- (Bluetooth *) and;
 /**
 谓词，返回self
  */
-- (BabyBluetooth *) then;
+- (Bluetooth *) then;
 /**
 谓词，返回self
  */
-- (BabyBluetooth *) with;
+- (Bluetooth *) with;
 
 /**
  * enjoy 祝你使用愉快，
@@ -415,26 +415,26 @@ sec秒后停止
      ## 例子：
      - 扫描后来个全套（发现服务，发现特征，读取特征，读取特征描述）
      
-     ` baby.scanForPeripherals().connectToPeripherals().discoverServices().discoverCharacteristics()
+     ` .scanForPeripherals().connectToPeripherals().discoverServices().discoverCharacteristics()
      .readValueForCharacteristic().discoverDescriptorsForCharacteristic().readValueForDescriptors().begin();
      `
      
      - 直接使用已有的外设连接后全套（发现服务，发现特征，读取特征，读取特征描述）
 
-     ` baby.having(self.peripheral).connectToPeripherals().discoverServices().discoverCharacteristics()
+     ` .having(self.peripheral).connectToPeripherals().discoverServices().discoverCharacteristics()
      .readValueForCharacteristic().discoverDescriptorsForCharacteristic().readValueForDescriptors().begin();
  `
  enjoy后面也可以加stop()方法
  
  */
 
-- (BabyBluetooth *(^)()) enjoy;
+- (Bluetooth *(^)()) enjoy;
 
 #pragma mark - 工具方法
 
 /**
  * 单例构造方法
- * @return BabyBluetooth共享实例
+ * @return Bluetooth共享实例
  */
 + (instancetype)shareBabyBluetooth;
 
@@ -457,7 +457,7 @@ sec秒后停止
 /**
 更新Characteristics的值
  */
-- (BabyBluetooth *(^)(CBPeripheral *peripheral,CBCharacteristic *characteristic)) characteristicDetails;
+- (Bluetooth *(^)(CBPeripheral *peripheral,CBCharacteristic *characteristic)) characteristicDetails;
 
 /**
 设置characteristic的notify
@@ -508,8 +508,8 @@ characteristic:(CBCharacteristic *)characteristic
 #pragma mark - peripheral model
 
 //进入外设模式
-- (BabyPeripheralManager *(^)()) bePeripheral;
-- (BabyPeripheralManager *(^)(NSString *localName)) bePeripheralWithName;
+- (PeripheralManager *(^)()) bePeripheral;
+- (PeripheralManager *(^)(NSString *localName)) bePeripheralWithName;
 
 @property (nonatomic, readonly) CBPeripheralManager *peripheralManager;
 

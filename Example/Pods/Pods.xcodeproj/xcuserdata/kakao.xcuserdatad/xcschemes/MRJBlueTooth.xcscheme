@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '94E1EBB0840012C135934E22706C3FE3'
-               BlueprintName = 'YHJBlueTooth'
+               BlueprintIdentifier = '8EB4C343B0ECC6CCB5E9418196BD9C88'
+               BlueprintName = 'MRJBlueTooth'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'YHJBlueTooth.framework'>
+               BuildableName = 'MRJBlueTooth.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

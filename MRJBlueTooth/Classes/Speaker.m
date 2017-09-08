@@ -1,5 +1,5 @@
 /*
- BabyBluetooth
+ Bluetooth
  简单易用的蓝牙ble库，基于CoreBluetooth  
   
  */
@@ -8,24 +8,24 @@
 //  Copyright (c) 2015年 余洪江. All rights reserved.
 //
 
-#import "BabySpeaker.h"
-#import "BabyDefine.h"
+#import "Speaker.h"
+#import "Define.h"
 
 
-typedef NS_ENUM(NSUInteger, BabySpeakerType) {
-    BabySpeakerTypeDiscoverPeripherals,
-    BabySpeakerTypeConnectedPeripheral,
-    BabySpeakerTypeDiscoverPeripheralsFailToConnect,
-    BabySpeakerTypeDiscoverPeripheralsDisconnect,
-    BabySpeakerTypeDiscoverPeripheralsDiscoverServices,
-    BabySpeakerTypeDiscoverPeripheralsDiscoverCharacteristics,
-    BabySpeakerTypeDiscoverPeripheralsReadValueForCharacteristic,
-    BabySpeakerTypeDiscoverPeripheralsDiscoverDescriptorsForCharacteristic,
-    BabySpeakerTypeDiscoverPeripheralsReadValueForDescriptorsBlock
+typedef NS_ENUM(NSUInteger, SpeakerType) {
+    SpeakerTypeDiscoverPeripherals,
+    SpeakerTypeConnectedPeripheral,
+    SpeakerTypeDiscoverPeripheralsFailToConnect,
+    SpeakerTypeDiscoverPeripheralsDisconnect,
+    SpeakerTypeDiscoverPeripheralsDiscoverServices,
+    SpeakerTypeDiscoverPeripheralsDiscoverCharacteristics,
+    SpeakerTypeDiscoverPeripheralsReadValueForCharacteristic,
+    SpeakerTypeDiscoverPeripheralsDiscoverDescriptorsForCharacteristic,
+    SpeakerTypeDiscoverPeripheralsReadValueForDescriptorsBlock
 };
 
 
-@implementation BabySpeaker {
+@implementation Speaker {
     //所有委托频道
     NSMutableDictionary *channels;
     //当前委托频道
@@ -37,36 +37,36 @@ typedef NS_ENUM(NSUInteger, BabySpeakerType) {
 - (instancetype)init {
     self = [super init];
     if (self) {
-        BabyCallback *defaultCallback = [[BabyCallback alloc]init];
+        Callback *defaultCallback = [[Callback alloc]init];
         notifyList = [[NSMutableDictionary alloc]init];
         channels = [[NSMutableDictionary alloc]init];
-        currChannel = KBABY_DETAULT_CHANNEL;
-        [channels setObject:defaultCallback forKey:KBABY_DETAULT_CHANNEL];
+        currChannel = K_DETAULT_CHANNEL;
+        [channels setObject:defaultCallback forKey:K_DETAULT_CHANNEL];
     }
     return self;
 }
 
-- (BabyCallback *)callback {
-    return [channels objectForKey:KBABY_DETAULT_CHANNEL];
+- (Callback *)callback {
+    return [channels objectForKey:K_DETAULT_CHANNEL];
 }
 
-- (BabyCallback *)callbackOnCurrChannel {
+- (Callback *)callbackOnCurrChannel {
     return [self callbackOnChnnel:currChannel];
 }
 
-- (BabyCallback *)callbackOnChnnel:(NSString *)channel {
+- (Callback *)callbackOnChnnel:(NSString *)channel {
     if (!channel) {
         [self callback];
     }
     return [channels objectForKey:channel];
 }
 
-- (BabyCallback *)callbackOnChnnel:(NSString *)channel
+- (Callback *)callbackOnChnnel:(NSString *)channel
                createWhenNotExist:(BOOL)createWhenNotExist {
     
-    BabyCallback *callback = [channels objectForKey:channel];
+    Callback *callback = [channels objectForKey:channel];
     if (!callback && createWhenNotExist) {
-        callback = [[BabyCallback alloc]init];
+        callback = [[Callback alloc]init];
         [channels setObject:callback forKey:channel];
     }
     
@@ -77,15 +77,15 @@ typedef NS_ENUM(NSUInteger, BabySpeakerType) {
     if (channel) {
         if ([self callbackOnChnnel:channel]) {
             currChannel = channel;
-            BabyLog(@">>>已切换到%@",channel);
+            Log(@">>>已切换到%@",channel);
         }
         else {
-            BabyLog(@">>>所要切换的channel不存在");
+            Log(@">>>所要切换的channel不存在");
         }
     }
     else {
-        currChannel = KBABY_DETAULT_CHANNEL;
-            BabyLog(@">>>已切换到默认频道");
+        currChannel = K_DETAULT_CHANNEL;
+            Log(@">>>已切换到默认频道");
     }
 }
 

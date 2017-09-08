@@ -1,15 +1,15 @@
 //
-//  BabyBeats.m
-//  BabyBluetoothAppDemo
+//  Beats.m
+//  BluetoothAppDemo
 //
 //  Created by ZTELiuyw on  17/07/17.
 //  Copyright (c) 2015年 余洪江. All rights reserved.
 //
 
-#import "BabyRhythm.h"
-#import "BabyDefine.h"
+#import "Rhythm.h"
+#import "Define.h"
 
-@implementation BabyRhythm {
+@implementation Rhythm {
     BOOL isOver;
     BBBeatsBreakBlock blockOnBeatBreak;
     BBBeatsOverBlock blockOnBeatOver;
@@ -19,7 +19,7 @@
     self = [super init];
     if (self) {
         //beatsInterval
-        _beatsInterval = KBABYRHYTHM_BEATS_DEFAULT_INTERVAL;
+        _beatsInterval = KRHYTHM_BEATS_DEFAULT_INTERVAL;
     }
     return  self;
 }
@@ -27,11 +27,11 @@
 - (void)beats {
     
     if (isOver) {
-        BabyLog(@">>>beats isOver");
+        Log(@">>>beats isOver");
         return;
     }
     
-    BabyLog(@">>>beats at :%@",[NSDate date]);
+    Log(@">>>beats at :%@",[NSDate date]);
     if (self.beatsTimer) {
         [self.beatsTimer setFireDate: [[NSDate date]dateByAddingTimeInterval:self.beatsInterval]];
     }
@@ -43,7 +43,7 @@
 }
 
 - (void)beatsBreak {
-     BabyLog(@">>>beatsBreak :%@",[NSDate date]);
+     Log(@">>>beatsBreak :%@",[NSDate date]);
     [self.beatsTimer setFireDate:[NSDate distantFuture]];
     if (blockOnBeatBreak) {
         blockOnBeatBreak(self);
@@ -51,7 +51,7 @@
 }
 
 - (void)beatsOver {
-    BabyLog(@">>>beatsOver :%@",[NSDate date]);
+    Log(@">>>beatsOver :%@",[NSDate date]);
     [self.beatsTimer setFireDate:[NSDate distantFuture]];
     isOver = YES;
     if (blockOnBeatOver) {
@@ -61,16 +61,16 @@
 }
 
 - (void)beatsRestart {
-    BabyLog(@">>>beatsRestart :%@",[NSDate date]);
+    Log(@">>>beatsRestart :%@",[NSDate date]);
     isOver = NO;
     [self beats];
 }
 
-- (void)setBlockOnBeatsBreak:(void(^)(BabyRhythm *bry))block {
+- (void)setBlockOnBeatsBreak:(void(^)(Rhythm *bry))block {
     blockOnBeatBreak = block;
 }
 
-- (void)setBlockOnBeatsOver:(void(^)(BabyRhythm *bry))block {
+- (void)setBlockOnBeatsOver:(void(^)(Rhythm *bry))block {
     blockOnBeatOver = block;
 }
 

@@ -1,9 +1,9 @@
 /*
- BabyBluetooth
+ Bluetooth
  简单易用的蓝牙ble库，基于CoreBluetooth  
   
  
- @brief  babybluetooth 的block定义和储存
+ @brief  bluetooth 的block定义和储存
  
  */
 
@@ -12,7 +12,7 @@
 //
 
 #import <CoreBluetooth/CoreBluetooth.h>
-#import "BabyOptions.h"
+#import "Options.h"
 
 
 //设备状态改变的委托
@@ -36,9 +36,9 @@ typedef void (^BBDiscoverDescriptorsForCharacteristicBlock)(CBPeripheral *periph
 //获取Descriptors的值
 typedef void (^BBReadValueForDescriptorsBlock)(CBPeripheral *peripheral,CBDescriptor *descriptor,NSError *error);
 
-//babyBluettooth cancelScanBlock方法调用后的回调
+//Bluettooth cancelScanBlock方法调用后的回调
 typedef void (^BBCancelScanBlock)(CBCentralManager *centralManager);
-//babyBluettooth cancelAllPeripheralsConnection 方法调用后的回调
+//Bluettooth cancelAllPeripheralsConnection 方法调用后的回调
 typedef void (^BBCancelAllPeripheralsConnectionBlock)(CBCentralManager *centralManager);
 
 
@@ -69,7 +69,7 @@ typedef void (^BBPeripheralModelDidUnSubscribeToCharacteristic)(CBPeripheralMana
 
 
 
-@interface BabyCallback : NSObject
+@interface Callback : NSObject
 
 #pragma mark - callback block
 //设备状态改变的委托
@@ -108,12 +108,12 @@ typedef void (^BBPeripheralModelDidUnSubscribeToCharacteristic)(CBPeripheralMana
 @property (nonatomic, copy) BBDidModifyServicesBlock blockOnDidModifyServices;
 
 
-//babyBluettooth stopScan方法调用后的回调
+//Bluettooth stopScan方法调用后的回调
 @property(nonatomic,copy) BBCancelScanBlock blockOnCancelScan;
-//babyBluettooth stopConnectAllPerihperals 方法调用后的回调
+//Bluettooth stopConnectAllPerihperals 方法调用后的回调
 @property(nonatomic,copy) BBCancelAllPeripheralsConnectionBlock blockOnCancelAllPeripheralsConnection;
-//babyBluettooth 蓝牙使用的参数参数
-@property(nonatomic,strong) BabyOptions *babyOptions;
+//Bluettooth 蓝牙使用的参数参数
+@property(nonatomic,strong) Options *Options;
 
 
 #pragma mark - 过滤器Filter
