@@ -1,5 +1,5 @@
 framework module Pods_YHJBlueTooth_Tests {
-  umbrella header "Pods-YHJBlueTooth_Tests-umbrella.h"
+  umbrella header "Pods-MRJBlueTooth_Tests-umbrella.h"
 
   export *
   module * { export * }
