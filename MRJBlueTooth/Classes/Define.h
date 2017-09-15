@@ -66,9 +66,7 @@
 # pragma mark -  定义的方法
 
 // log
-#define Log(fmt, ...) if(K_IS_SHOW_LOG) { NSLog(fmt,##__VA_ARGS__); }
-
-
+#define MRJLog(fmt, ...) if(K_IS_SHOW_LOG) { NSLog(fmt,##__VA_ARGS__); }
 
 
 

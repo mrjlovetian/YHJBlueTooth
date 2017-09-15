@@ -99,22 +99,22 @@
     
     switch (central.state) {
         case CBCentralManagerStateUnknown:
-            Log(@">>>CBCentralManagerStateUnknown");
+            MRJLog(@">>>CBCentralManagerStateUnknown");
             break;
         case CBCentralManagerStateResetting:
-            Log(@">>>CBCentralManagerStateResetting");
+            MRJLog(@">>>CBCentralManagerStateResetting");
             break;
         case CBCentralManagerStateUnsupported:
-            Log(@">>>CBCentralManagerStateUnsupported");
+            MRJLog(@">>>CBCentralManagerStateUnsupported");
             break;
         case CBCentralManagerStateUnauthorized:
-            Log(@">>>CBCentralManagerStateUnauthorized");
+            MRJLog(@">>>CBCentralManagerStateUnauthorized");
             break;
         case CBCentralManagerStatePoweredOff:
-            Log(@">>>CBCentralManagerStatePoweredOff");
+            MRJLog(@">>>CBCentralManagerStatePoweredOff");
             break;
         case CBCentralManagerStatePoweredOn:
-            Log(@">>>CBCentralManagerStatePoweredOn");
+            MRJLog(@">>>CBCentralManagerStatePoweredOn");
             [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtCentralManagerEnable object:@{@"central":central}];
             break;
         default:
@@ -213,7 +213,7 @@
     //    Log(@">>>外设连接断开连接 %@: %@\n", [peripheral name], [error localizedDescription]);
     if (error)
     {
-        Log(@">>> didDisconnectPeripheral for %@ with error: %@", peripheral.name, [error localizedDescription]);
+        MRJLog(@">>> didDisconnectPeripheral for %@ with error: %@", peripheral.name, [error localizedDescription]);
     }
     
     [self deletePeripheral:peripheral];
@@ -227,7 +227,7 @@
         if ([currChannel blockOnCancelAllPeripheralsConnection]) {
             [currChannel blockOnCancelAllPeripheralsConnection](centralManager);
         }
-        //    Log(@">>> stopConnectAllPerihperals");
+        //    MRJLog(@">>> stopConnectAllPerihperals");
     }
     
     //检查并重新连接需要重连的设备
@@ -243,9 +243,9 @@
     [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidDiscoverServices
                                                        object:@{@"peripheral":peripheral,@"error":error?error:@""}];
     
-    //  Log(@">>>扫描到服务：%@",peripheral.services);
+    //  MRJLog(@">>>扫描到服务：%@",peripheral.services);
     if (error) {
-        Log(@">>>didDiscoverServices for %@ with error: %@", peripheral.name, [error localizedDescription]);
+        MRJLog(@">>>didDiscoverServices for %@ with error: %@", peripheral.name, [error localizedDescription]);
     }
     //回叫block
     if ([currChannel blockOnDiscoverServices]) {
@@ -269,7 +269,7 @@
     
     
     if (error) {
-        Log(@"error didDiscoverCharacteristicsForService for %@ with error: %@", service.UUID, [error localizedDescription]);
+        MRJLog(@"error didDiscoverCharacteristicsForService for %@ with error: %@", service.UUID, [error localizedDescription]);
         //        return;
     }
     //回叫block
@@ -304,7 +304,7 @@
                                                        object:@{@"peripheral":peripheral,@"characteristic":characteristic,@"error":error?error:@""}];
     
     if (error) {
-        Log(@"error didUpdateValueForCharacteristic %@ with error: %@", characteristic.UUID, [error localizedDescription]);
+        MRJLog(@"error didUpdateValueForCharacteristic %@ with error: %@", characteristic.UUID, [error localizedDescription]);
         //        return;
     }
     //查找字段订阅
@@ -322,7 +322,7 @@
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverDescriptorsForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
     
     if (error) {
-        Log(@"error Discovered DescriptorsForCharacteristic for %@ with error: %@", characteristic.UUID, [error localizedDescription]);
+        MRJLog(@"error Discovered DescriptorsForCharacteristic for %@ with error: %@", characteristic.UUID, [error localizedDescription]);
         //        return;
     }
     //回叫block
@@ -350,7 +350,7 @@
     
     
     if (error) {
-        Log(@"error didUpdateValueForDescriptor  for %@ with error: %@", descriptor.UUID, [error localizedDescription]);
+        MRJLog(@"error didUpdateValueForDescriptor  for %@ with error: %@", descriptor.UUID, [error localizedDescription]);
         //        return;
     }
     //回叫block
@@ -383,8 +383,8 @@
     
     [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidUpdateNotificationStateForCharacteristic object:@{@"characteristic":characteristic,@"error":error?error:@""}];
     
-    Log(@">>>didUpdateNotificationStateForCharacteristic");
-    Log(@">>>uuid:%@,isNotifying:%@",characteristic.UUID,characteristic.isNotifying?@"isNotifying":@"Notifying");
+    MRJLog(@">>>didUpdateNotificationStateForCharacteristic");
+    MRJLog(@">>>uuid:%@,isNotifying:%@",characteristic.UUID,characteristic.isNotifying?@"isNotifying":@"Notifying");
     if ([currChannel blockOnDidUpdateNotificationStateForCharacteristic]) {
         [currChannel blockOnDidUpdateNotificationStateForCharacteristic](characteristic,error);
     }
@@ -400,7 +400,7 @@
 - (void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(nullable NSError *)error {
     [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidReadRSSI object:@{@"peripheral":peripheral,@"RSSI":peripheral.RSSI,@"error":error?error:@""}];
     
-    Log(@">>>peripheralDidUpdateRSSI -> RSSI:%@",peripheral.RSSI);
+    MRJLog(@">>>peripheralDidUpdateRSSI -> RSSI:%@",peripheral.RSSI);
     if ([currChannel blockOnDidReadRSSI]) {
         [currChannel blockOnDidReadRSSI](peripheral.RSSI,error);
     }
@@ -409,7 +409,7 @@
 - (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error {
     [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidReadRSSI object:@{@"peripheral":peripheral,@"RSSI":RSSI?RSSI:@100,@"error":error?error:@""}];
     
-    Log(@">>>peripheralDidUpdateRSSI -> RSSI:%@",RSSI);
+    MRJLog(@">>>peripheralDidUpdateRSSI -> RSSI:%@",RSSI);
     if ([currChannel blockOnDidReadRSSI]) {
         [currChannel blockOnDidReadRSSI](RSSI,error);
     }
@@ -478,6 +478,5 @@
 - (NSArray *)findConnectedPeripherals{
     return connectedPeripherals;
 }
-
 
 @end

@@ -45,15 +45,12 @@
         else{
             hexStr = [NSString stringWithFormat:@"%@%@",hexStr,newHexStr];
         }
-
-    } 
+    }
     return hexStr; 
 }
 
-
 //int转data
 + (NSData *)ConvertIntToData:(int)i {
-
     NSData *data = [NSData dataWithBytes: &i length: sizeof(i)];
     return data;
 }
@@ -67,11 +64,9 @@
 
 //十六进制转换为普通字符串的。
 + (NSData *)ConvertHexStringToData:(NSString *)hexString {
-    
     NSData *data = [[Toy ConvertHexStringToString:hexString] dataUsingEncoding:NSUTF8StringEncoding];
     return data;
 }
-
 
 //根据UUIDString查找CBCharacteristic
 + (CBCharacteristic *)findCharacteristicFormServices:(NSMutableArray *)services

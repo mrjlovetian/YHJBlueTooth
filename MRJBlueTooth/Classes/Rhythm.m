@@ -27,11 +27,11 @@
 - (void)beats {
     
     if (isOver) {
-        Log(@">>>beats isOver");
+        MRJLog(@">>>beats isOver");
         return;
     }
     
-    Log(@">>>beats at :%@",[NSDate date]);
+    MRJLog(@">>>beats at :%@",[NSDate date]);
     if (self.beatsTimer) {
         [self.beatsTimer setFireDate: [[NSDate date]dateByAddingTimeInterval:self.beatsInterval]];
     }
@@ -43,7 +43,7 @@
 }
 
 - (void)beatsBreak {
-     Log(@">>>beatsBreak :%@",[NSDate date]);
+     MRJLog(@">>>beatsBreak :%@",[NSDate date]);
     [self.beatsTimer setFireDate:[NSDate distantFuture]];
     if (blockOnBeatBreak) {
         blockOnBeatBreak(self);
@@ -51,17 +51,16 @@
 }
 
 - (void)beatsOver {
-    Log(@">>>beatsOver :%@",[NSDate date]);
+    MRJLog(@">>>beatsOver :%@",[NSDate date]);
     [self.beatsTimer setFireDate:[NSDate distantFuture]];
     isOver = YES;
     if (blockOnBeatOver) {
         blockOnBeatOver(self);
     }
-    
 }
 
 - (void)beatsRestart {
-    Log(@">>>beatsRestart :%@",[NSDate date]);
+    MRJLog(@">>>beatsRestart :%@",[NSDate date]);
     isOver = NO;
     [self beats];
 }

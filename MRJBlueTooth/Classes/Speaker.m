@@ -77,15 +77,15 @@ typedef NS_ENUM(NSUInteger, SpeakerType) {
     if (channel) {
         if ([self callbackOnChnnel:channel]) {
             currChannel = channel;
-            Log(@">>>已切换到%@",channel);
+            MRJLog(@">>>已切换到%@",channel);
         }
         else {
-            Log(@">>>所要切换的channel不存在");
+            MRJLog(@">>>所要切换的channel不存在");
         }
     }
     else {
         currChannel = K_DETAULT_CHANNEL;
-            Log(@">>>已切换到默认频道");
+            MRJLog(@">>>已切换到默认频道");
     }
 }
 

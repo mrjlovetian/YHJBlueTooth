@@ -56,13 +56,13 @@
         else {
             PERIPHERAL_MANAGER_INIT_WAIT_TIMES++;
             if (PERIPHERAL_MANAGER_INIT_WAIT_TIMES > 5) {
-                Log(@">>>error： 第%d次等待peripheralManager打开任然失败，请检查蓝牙设备是否可用",PERIPHERAL_MANAGER_INIT_WAIT_TIMES);
+                MRJLog(@">>>error： 第%d次等待peripheralManager打开任然失败，请检查蓝牙设备是否可用",PERIPHERAL_MANAGER_INIT_WAIT_TIMES);
             }
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 3.0 * NSEC_PER_SEC);
             dispatch_after(popTime, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 self.startAdvertising();
             });
-            Log(@">>> 第%d次等待peripheralManager打开",PERIPHERAL_MANAGER_INIT_WAIT_TIMES);
+            MRJLog(@">>> 第%d次等待peripheralManager打开",PERIPHERAL_MANAGER_INIT_WAIT_TIMES);
         }
         
         return self;
@@ -133,22 +133,22 @@
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral {
     switch (peripheral.state) {
         case CBPeripheralManagerStateUnknown:
-            Log(@">>>CBPeripheralManagerStateUnknown");
+            MRJLog(@">>>CBPeripheralManagerStateUnknown");
             break;
         case CBPeripheralManagerStateResetting:
-            Log(@">>>CBPeripheralManagerStateResetting");
+            MRJLog(@">>>CBPeripheralManagerStateResetting");
             break;
         case CBPeripheralManagerStateUnsupported:
-            Log(@">>>CBPeripheralManagerStateUnsupported");
+            MRJLog(@">>>CBPeripheralManagerStateUnsupported");
             break;
         case CBPeripheralManagerStateUnauthorized:
-            Log(@">>>CBPeripheralManagerStateUnauthorized");
+            MRJLog(@">>>CBPeripheralManagerStateUnauthorized");
             break;
         case CBPeripheralManagerStatePoweredOff:
-            Log(@">>>CBPeripheralManagerStatePoweredOff");
+            MRJLog(@">>>CBPeripheralManagerStatePoweredOff");
             break;
         case CBPeripheralManagerStatePoweredOn:
-            Log(@">>>CBPeripheralManagerStatePoweredOn");
+            MRJLog(@">>>CBPeripheralManagerStatePoweredOn");
             //发送centralManagerDidUpdateState通知
             [[NSNotificationCenter defaultCenter]postNotificationName:@"CBPeripheralManagerStatePoweredOn" object:nil];
             break;
