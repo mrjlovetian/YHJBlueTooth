@@ -1,6 +1,6 @@
 //
-//  YHJAppDelegate.m
-//  YHJBlueTooth
+//  MRJAppDelegate.m
+//  MRJBlueTooth
 //
 //  Created by yuhongjiang on 07/19/2017.
 //  Copyright (c) 2017 yuhongjiang. All rights reserved.
@@ -8,7 +8,7 @@
 
 #import "YHJAppDelegate.h"
 
-@implementation YHJAppDelegate
+@implementation MRJAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

@@ -1,6 +1,6 @@
 //
 //  main.m
-//  YHJBlueTooth
+//  MRJBlueTooth
 //
 //  Created by yuhongjiang on 07/19/2017.
 //  Copyright (c) 2017 yuhongjiang. All rights reserved.
@@ -12,6 +12,6 @@
 int main(int argc, char * argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([YHJAppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([MRJAppDelegate class]));
     }
 }

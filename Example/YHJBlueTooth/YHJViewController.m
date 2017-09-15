@@ -1,6 +1,6 @@
 //
-//  YHJViewController.m
-//  YHJBlueTooth
+//  MRJViewController.m
+//  MRJBlueTooth
 //
 //  Created by yuhongjiang on 07/19/2017.
 //  Copyright (c) 2017 yuhongjiang. All rights reserved.
@@ -8,11 +8,11 @@
 
 #import "YHJViewController.h"
 
-@interface YHJViewController ()
+@interface MRJViewController ()
 
 @end
 
-@implementation YHJViewController
+@implementation MRJViewController
 
 - (void)viewDidLoad
 {
