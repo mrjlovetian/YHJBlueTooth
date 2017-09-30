@@ -12,7 +12,7 @@
 //
 
 #import <CoreBluetooth/CoreBluetooth.h>
-#import "Options.h
+#import "Options.h"
 
 //设备状态改变的委托
 typedef void (^BBCentralManagerDidUpdateStateBlock)(CBCentralManager *central);
@@ -109,7 +109,7 @@ typedef void (^BBPeripheralModelDidUnSubscribeToCharacteristic)(CBPeripheralMana
 //Bluettooth stopConnectAllPerihperals 方法调用后的回调
 @property(nonatomic,copy) BBCancelAllPeripheralsConnectionBlock blockOnCancelAllPeripheralsConnection;
 //Bluettooth 蓝牙使用的参数参数
-@property(nonatomic,strong) Options *Options;
+@property(nonatomic, copy)Options *options;
 
 #pragma mark - 过滤器Filter
 //发现peripherals规则

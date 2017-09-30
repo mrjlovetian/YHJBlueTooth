@@ -51,12 +51,12 @@
 
 //扫描Peripherals
 - (void)scanPeripherals {
-    [centralManager scanForPeripheralsWithServices:[currChannel Options].scanForPeripheralsWithServices options:[currChannel Options].scanForPeripheralsWithOptions];
+    [centralManager scanForPeripheralsWithServices:[currChannel options].scanForPeripheralsWithServices options:[currChannel options].scanForPeripheralsWithOptions];
 }
 
 //连接Peripherals
 - (void)connectToPeripheral:(CBPeripheral *)peripheral{
-    [centralManager connectPeripheral:peripheral options:[currChannel Options].connectPeripheralWithOptions];
+    [centralManager connectPeripheral:peripheral options:[currChannel options].connectPeripheralWithOptions];
 }
 
 //断开设备连接
@@ -142,7 +142,7 @@
     //处理连接设备
     if (needConnectPeripheral) {
         if ([currChannel filterOnconnectToPeripherals](peripheral.name,advertisementData,RSSI)) {
-            [centralManager connectPeripheral:peripheral options:[currChannel Options].connectPeripheralWithOptions];
+            [centralManager connectPeripheral:peripheral options:[currChannel options].connectPeripheralWithOptions];
             //开一个定时器监控连接超时的情况
             connectTimer = [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(disconnect:) userInfo:peripheral repeats:NO];
         }
@@ -173,7 +173,7 @@
     }
     //扫描外设的服务
     if (needDiscoverServices) {
-        [peripheral discoverServices:[currChannel Options].discoverWithServices];
+        [peripheral discoverServices:[currChannel options].discoverWithServices];
         //discoverIncludedServices
     }
     
@@ -237,7 +237,7 @@
     //discover characteristics
     if (needDiscoverCharacteristics) {
         for (CBService *service in peripheral.services) {
-            [peripheral discoverCharacteristics:[currChannel Options].discoverWithCharacteristics forService:service];
+            [peripheral discoverCharacteristics:[currChannel options].discoverWithCharacteristics forService:service];
         }
     }
 }
