@@ -1,10 +1,7 @@
 /*
  Bluetooth
- 简单易用的蓝牙ble库，基于CoreBluetooth  
-  
-
+ 简单易用的蓝牙ble库，基于CoreBluetooth
  @brief  蓝牙中心模式实现类 
- 
  */
 
 //  Created by 余洪江 on  17/07/17.
@@ -16,9 +13,6 @@
 #import "Toy.h"
 #import "Speaker.h"
 #import "Define.h"
-
-
-
 @interface CentralManager : NSObject<CBCentralManagerDelegate,CBPeripheralDelegate> {
 
 @public

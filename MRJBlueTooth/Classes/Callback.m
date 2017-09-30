@@ -1,7 +1,6 @@
 /*
  Bluetooth
  简单易用的蓝牙ble库，基于CoreBluetooth  
-  
  */
 
 //  Created by 余洪江 on  17/07/17.
@@ -11,7 +10,6 @@
 #import "Callback.h"
 
 @implementation Callback
-
 
 - (instancetype)init {
     self = [super init];

@@ -18,13 +18,11 @@
 #import "Rhythm.h"
 #import "Define.h"
 
-
 @interface Bluetooth : NSObject
 
 #pragma mark - bluetooth的委托
 
 //默认频道的委托
-
 /**
 设备状态改变的block |  when CentralManager state changed
 */
@@ -125,10 +123,7 @@ discoverIncludedServices的回调，暂时在bluetooth中无作用
 */
 - (void)setBlockOnDidModifyServices:(void (^)(CBPeripheral *peripheral,NSArray *invalidatedServices))block;
 
-
-
 // channel的委托
-
 /**
 设备状态改变的block
 |  when CentralManager state changed 
@@ -149,7 +144,6 @@ discoverIncludedServices的回调，暂时在bluetooth中无作用
 */
 - (void)setBlockOnConnectedAtChannel:(NSString *)channel
                               block:(void (^)(CBCentralManager *central,CBPeripheral *peripheral))block;
-
 
 /**
 连接Peripherals失败的block
@@ -332,7 +326,6 @@ scanForPeripheralsWithServices:(NSArray *)scanForPeripheralsWithServices
           discoverWithServices:(NSArray *)discoverWithServices
    discoverWithCharacteristics:(NSArray *)discoverWithCharacteristics;
 
-
 #pragma mark - 链式函数
 
 /**
@@ -438,7 +431,6 @@ sec秒后停止
  */
 + (instancetype)shareBabyBluetooth;
 
-
 /**
 断开连接
  */
@@ -503,7 +495,6 @@ characteristic:(CBCharacteristic *)characteristic
  通过方法获取外设后可以直接连接外设，跳过扫描过程
  */
 - (CBPeripheral *)retrievePeripheralWithUUIDString:(NSString *)UUIDString;
-
 
 #pragma mark - peripheral model
 

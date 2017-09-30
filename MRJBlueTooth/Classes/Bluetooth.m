@@ -9,8 +9,6 @@
 
 #import "Bluetooth.h"
 
-
-
 @implementation Bluetooth{
     CentralManager *centralManager;
     PeripheralManager *peripheralManager;
@@ -18,6 +16,7 @@
     int CENTRAL_MANAGER_INIT_WAIT_TIMES;
     NSTimer *timerForStop;
 }
+
 //单例模式
 + (instancetype)shareBabyBluetooth {
     static Bluetooth *share = nil;
@@ -35,15 +34,14 @@
         centralManager = [[CentralManager alloc]init];
         speaker = [[Speaker alloc]init];
         centralManager->speaker = speaker;
-        
         peripheralManager = [[PeripheralManager alloc]init];
         peripheralManager->speaker = speaker;
     }
     return self;
-    
 }
 
 #pragma mark - bluetooth的委托
+
 /*
  默认频道的委托
  */
@@ -76,6 +74,7 @@
 - (void)setBlockOnDiscoverServices:(void (^)(CBPeripheral *peripheral,NSError *error))block {
     [[speaker callback]setBlockOnDiscoverServices:block];
 }
+
 //设置查找到Characteristics的block
 - (void)setBlockOnDiscoverCharacteristics:(void (^)(CBPeripheral *peripheral,CBService *service,NSError *error))block {
     [[speaker callback]setBlockOnDiscoverCharacteristics:block];
@@ -246,7 +245,6 @@
     [[speaker callbackOnChnnel:channel createWhenNotExist:YES]setBlockOnDidModifyServices:block];
 }
 
-
 //设置蓝牙运行时的参数
 - (void)setBabyOptionsAtChannel:(NSString *)channel
  scanForPeripheralsWithOptions:(NSDictionary *) scanForPeripheralsWithOptions
@@ -306,6 +304,7 @@
 }
 
 #pragma mark - 链式函数
+
 //查找Peripherals
 - (Bluetooth *(^)()) scanForPeripherals {
     return ^Bluetooth *() {
@@ -407,7 +406,6 @@
     };
 }
 
-
 //私有方法，扫描或连接设备
 - (void)start:(CBPeripheral *)cachedPeripheral {
     if (centralManager->centralManager.state == CBCentralManagerStatePoweredOn) {
@@ -495,9 +493,7 @@
 }
 
 - (void)validateProcess {
-    
     NSMutableArray *faildReason = [[NSMutableArray alloc]init];
-    
     //规则：不执行discoverDescriptorsForCharacteristic()时，不能执行readValueForDescriptors()
     if (!centralManager->needDiscoverDescriptorsForCharacteristic) {
         if (centralManager->needReadValueForDescriptors) {
@@ -562,6 +558,7 @@
 }
 
 #pragma mark - 工具方法
+
 //断开连接
 - (void)cancelPeripheralConnection:(CBPeripheral *)peripheral {
     [centralManager cancelPeripheralConnection:peripheral];

@@ -12,8 +12,7 @@
 //
 
 #import <CoreBluetooth/CoreBluetooth.h>
-#import "Options.h"
-
+#import "Options.h
 
 //设备状态改变的委托
 typedef void (^BBCentralManagerDidUpdateStateBlock)(CBCentralManager *central);
@@ -35,12 +34,10 @@ typedef void (^BBReadValueForCharacteristicBlock)(CBPeripheral *peripheral,CBCha
 typedef void (^BBDiscoverDescriptorsForCharacteristicBlock)(CBPeripheral *peripheral,CBCharacteristic *service,NSError *error);
 //获取Descriptors的值
 typedef void (^BBReadValueForDescriptorsBlock)(CBPeripheral *peripheral,CBDescriptor *descriptor,NSError *error);
-
 //Bluettooth cancelScanBlock方法调用后的回调
 typedef void (^BBCancelScanBlock)(CBCentralManager *centralManager);
 //Bluettooth cancelAllPeripheralsConnection 方法调用后的回调
 typedef void (^BBCancelAllPeripheralsConnectionBlock)(CBCentralManager *centralManager);
-
 
 typedef void (^BBDidWriteValueForCharacteristicBlock)(CBCharacteristic *characteristic,NSError *error);
 
@@ -55,7 +52,6 @@ typedef void (^BBDidDiscoverIncludedServicesForServiceBlock)(CBService *service,
 typedef void (^BBDidUpdateNameBlock)(CBPeripheral *peripheral);
 
 typedef void (^BBDidModifyServicesBlock)(CBPeripheral *peripheral,NSArray *invalidatedServices);
-
 
 //peripheral model
 typedef void (^BBPeripheralModelDidUpdateState)(CBPeripheralManager *peripheral);
@@ -115,18 +111,15 @@ typedef void (^BBPeripheralModelDidUnSubscribeToCharacteristic)(CBPeripheralMana
 //Bluettooth 蓝牙使用的参数参数
 @property(nonatomic,strong) Options *Options;
 
-
 #pragma mark - 过滤器Filter
 //发现peripherals规则
 @property (nonatomic, copy) BOOL (^filterOnDiscoverPeripherals)(NSString *peripheralName, NSDictionary *advertisementData, NSNumber *RSSI);
 //连接peripherals规则
 @property (nonatomic, copy) BOOL (^filterOnconnectToPeripherals)(NSString *peripheralName, NSDictionary *advertisementData, NSNumber *RSSI);
 
-
 #pragma mark - peripheral model
 
 //peripheral model
-
 @property (nonatomic, copy) BBPeripheralModelDidUpdateState blockOnPeripheralModelDidUpdateState;
 @property (nonatomic, copy) BBPeripheralModelDidAddService blockOnPeripheralModelDidAddService;
 @property (nonatomic, copy) BBPeripheralModelDidStartAdvertising blockOnPeripheralModelDidStartAdvertising;

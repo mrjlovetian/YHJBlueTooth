@@ -1,7 +1,6 @@
 /*
  Bluetooth
  简单易用的蓝牙ble库，基于CoreBluetooth  
-  
  */
 
 //  Created by 余洪江 on  17/07/17.
@@ -11,8 +10,6 @@
 #import "CentralManager.h"
 #import "Callback.h"
 
-
-
 @implementation CentralManager
 
 #define currChannel [speaker callbackOnCurrChannel]
@@ -20,8 +17,6 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        
-        
 #if  __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_6_0
         NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                                  //蓝牙power没打开时alert提示框
@@ -43,7 +38,6 @@
             //非后台模式
             centralManager = [[CBCentralManager alloc]initWithDelegate:self queue:nil];
         }
-        
         //pocket
         pocket = [[NSMutableDictionary alloc]init];
         connectedPeripherals = [[NSMutableArray alloc]init];
@@ -51,10 +45,7 @@
         reConnectPeripherals = [[NSMutableArray alloc]init];
     }
     return  self;
-    
 }
-
-
 
 #pragma mark - 接收到通知
 
@@ -87,7 +78,6 @@
     if([currChannel blockOnCancelScan]) {
         [currChannel blockOnCancelScan](centralManager);
     }
-    
 }
 
 #pragma mark - CBCentralManagerDelegate委托方法
@@ -166,11 +156,9 @@
 
 //连接到Peripherals-成功
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
-    
     //发出通知
     [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidConnectPeripheral
                                                        object:@{@"central":central,@"peripheral":peripheral}];
-    
     //设置委托
     [peripheral setDelegate:self];
     
@@ -183,7 +171,6 @@
     if ([currChannel blockOnConnectedPeripheral]) {
         [currChannel blockOnConnectedPeripheral](central,peripheral);
     }
-    
     //扫描外设的服务
     if (needDiscoverServices) {
         [peripheral discoverServices:[currChannel Options].discoverWithServices];
@@ -209,7 +196,6 @@
     //发出通知
     [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidDisconnectPeripheral
                                                        object:@{@"central":central,@"peripheral":peripheral,@"error":error?error:@""}];
-    
     //    Log(@">>>外设连接断开连接 %@: %@\n", [peripheral name], [error localizedDescription]);
     if (error)
     {
@@ -220,7 +206,6 @@
     if ([currChannel blockOnDisconnect]) {
         [currChannel blockOnDisconnect](central,peripheral,error);
     }
-    
     //判断是否全部链接都已经段开,调用blockOnCancelAllPeripheralsConnection委托
     if ([self findConnectedPeripherals].count == 0) {
         //停止扫描callback
@@ -229,7 +214,6 @@
         }
         //    MRJLog(@">>> stopConnectAllPerihperals");
     }
-    
     //检查并重新连接需要重连的设备
     if ([reConnectPeripherals containsObject:peripheral]) {
         [self connectToPeripheral:peripheral];
@@ -238,7 +222,6 @@
 
 //扫描到服务
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
-    
     //发出通知
     [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidDiscoverServices
                                                        object:@{@"peripheral":peripheral,@"error":error?error:@""}];
@@ -251,7 +234,6 @@
     if ([currChannel blockOnDiscoverServices]) {
         [currChannel blockOnDiscoverServices](peripheral,error);
     }
-    
     //discover characteristics
     if (needDiscoverCharacteristics) {
         for (CBService *service in peripheral.services) {
@@ -262,12 +244,9 @@
 
 //发现服务的Characteristics
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error {
-
     //发出通知
     [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidDiscoverCharacteristicsForService
                                                        object:@{@"peripheral":peripheral,@"service":service,@"error":error?error:@""}];
-    
-    
     if (error) {
         MRJLog(@"error didDiscoverCharacteristicsForService for %@ with error: %@", service.UUID, [error localizedDescription]);
         //        return;
@@ -276,18 +255,12 @@
     if ([currChannel blockOnDiscoverCharacteristics]) {
         [currChannel blockOnDiscoverCharacteristics](peripheral,service,error);
     }
-    
     //如果需要更新Characteristic的值
     if (needReadValueForCharacteristic) {
         for (CBCharacteristic *characteristic in service.characteristics) {
             [peripheral readValueForCharacteristic:characteristic];
-            //判断读写权限
-            //            if (characteristic.properties & CBCharacteristicPropertyRead ) {
-            //                [peripheral readValueForCharacteristic:characteristic];
-            //            }
         }
     }
-    
     //如果搜索Characteristic的Descriptors
     if (needDiscoverDescriptorsForCharacteristic) {
         for (CBCharacteristic *characteristic in service.characteristics) {
@@ -298,14 +271,12 @@
 
 //读取Characteristics的值
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
-    
     //发出通知
     [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidUpdateValueForCharacteristic
                                                        object:@{@"peripheral":peripheral,@"characteristic":characteristic,@"error":error?error:@""}];
     
     if (error) {
         MRJLog(@"error didUpdateValueForCharacteristic %@ with error: %@", characteristic.UUID, [error localizedDescription]);
-        //        return;
     }
     //查找字段订阅
     if ([speaker notifyCallback:characteristic]) {
@@ -347,32 +318,23 @@
 
 //读取Characteristics的Descriptors的值
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForDescriptor:(CBDescriptor *)descriptor error:(NSError *)error {
-    
-    
     if (error) {
         MRJLog(@"error didUpdateValueForDescriptor  for %@ with error: %@", descriptor.UUID, [error localizedDescription]);
-        //        return;
     }
-    //回叫block
+    //block
     if ([currChannel blockOnReadValueForDescriptors]) {
         [currChannel blockOnReadValueForDescriptors](peripheral,descriptor,error);
     }
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
-    
     [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidWriteValueForCharacteristic object:@{@"characteristic":characteristic,@"error":error?error:@""}];
-    
-    //    Log(@">>>didWriteValueForCharacteristic");
-    //    Log(@">>>uuid:%@,new value:%@",characteristic.UUID,characteristic.value);
     if ([currChannel blockOnDidWriteValueForCharacteristic]) {
         [currChannel blockOnDidWriteValueForCharacteristic](characteristic,error);
     }
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForDescriptor:(CBDescriptor *)descriptor error:(NSError *)error {
-    //    Log(@">>>didWriteValueForCharacteristic");
-    //    Log(@">>>uuid:%@,new value:%@",descriptor.UUID,descriptor.value);
     if ([currChannel blockOnDidWriteValueForDescriptor]) {
         [currChannel blockOnDidWriteValueForDescriptor](descriptor,error);
     }
@@ -380,9 +342,7 @@
 
 //characteristic.isNotifying 状态改变
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
-    
     [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidUpdateNotificationStateForCharacteristic object:@{@"characteristic":characteristic,@"error":error?error:@""}];
-    
     MRJLog(@">>>didUpdateNotificationStateForCharacteristic");
     MRJLog(@">>>uuid:%@,isNotifying:%@",characteristic.UUID,characteristic.isNotifying?@"isNotifying":@"Notifying");
     if ([currChannel blockOnDidUpdateNotificationStateForCharacteristic]) {
@@ -399,7 +359,6 @@
 # if  __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_8_0
 - (void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(nullable NSError *)error {
     [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidReadRSSI object:@{@"peripheral":peripheral,@"RSSI":peripheral.RSSI,@"error":error?error:@""}];
-    
     MRJLog(@">>>peripheralDidUpdateRSSI -> RSSI:%@",peripheral.RSSI);
     if ([currChannel blockOnDidReadRSSI]) {
         [currChannel blockOnDidReadRSSI](peripheral.RSSI,error);
@@ -408,7 +367,6 @@
 #else
 - (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error {
     [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidReadRSSI object:@{@"peripheral":peripheral,@"RSSI":RSSI?RSSI:@100,@"error":error?error:@""}];
-    
     MRJLog(@">>>peripheralDidUpdateRSSI -> RSSI:%@",RSSI);
     if ([currChannel blockOnDidReadRSSI]) {
         [currChannel blockOnDidReadRSSI](RSSI,error);
@@ -433,7 +391,6 @@
  
  this is center with peripheral's story
  **/
-
 //sometimes ever：添加断开重连接的设备
 -  (void)sometimes_ever:(CBPeripheral *)peripheral {
     if (![reConnectPeripherals containsObject:peripheral]) {
@@ -446,8 +403,6 @@
 }
 
 #pragma mark - 私有方法
-
-
 #pragma mark - 设备list管理
 
 - (void)addDiscoverPeripheral:(CBPeripheral *)peripheral{
