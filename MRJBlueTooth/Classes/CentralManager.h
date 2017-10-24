@@ -1,9 +1,3 @@
-/*
- Bluetooth
- 简单易用的蓝牙ble库，基于CoreBluetooth
- @brief  蓝牙中心模式实现类 
- */
-
 //  Created by 余洪江 on  17/07/17.
 //  Copyright (c) 2015年 余洪江. All rights reserved.
 //
@@ -16,7 +10,6 @@
 @interface CentralManager : NSObject<CBCentralManagerDelegate,CBPeripheralDelegate> {
 
 @public
-
     //方法是否处理
     BOOL needScanForPeripherals;//是否扫描Peripherals
     BOOL needConnectPeripheral;//是否连接Peripherals

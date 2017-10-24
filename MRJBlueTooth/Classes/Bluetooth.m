@@ -1,11 +1,5 @@
-/*
- Bluetooth
- 简单易用的蓝牙ble库，基于CoreBluetooth
- */
-
 //  Created by 余洪江 on  17/07/17.
 //  Copyright (c) 2015年 余洪江. All rights reserved.
-
 
 #import "Bluetooth.h"
 
@@ -670,24 +664,31 @@ characteristic:(CBCharacteristic *)characteristic
 - (void)peripheralModelBlockOnPeripheralManagerDidUpdateState:(void(^)(CBPeripheralManager *peripheral))block {
     [[speaker callback]setBlockOnPeripheralModelDidUpdateState:block];
 }
+
 - (void)peripheralModelBlockOnDidAddService:(void(^)(CBPeripheralManager *peripheral,CBService *service,NSError *error))block {
     [[speaker callback]setBlockOnPeripheralModelDidAddService:block];
 }
+
 - (void)peripheralModelBlockOnDidStartAdvertising:(void(^)(CBPeripheralManager *peripheral,NSError *error))block {
     [[speaker callback]setBlockOnPeripheralModelDidStartAdvertising:block];
 }
+
 - (void)peripheralModelBlockOnDidReceiveReadRequest:(void(^)(CBPeripheralManager *peripheral,CBATTRequest *request))block {
     [[speaker callback]setBlockOnPeripheralModelDidReceiveReadRequest:block];
 }
+
 - (void)peripheralModelBlockOnDidReceiveWriteRequests:(void(^)(CBPeripheralManager *peripheral,NSArray *requests))block {
     [[speaker callback]setBlockOnPeripheralModelDidReceiveWriteRequests:block];
 }
+
 - (void)peripheralModelBlockOnIsReadyToUpdateSubscribers:(void(^)(CBPeripheralManager *peripheral))block {
     [[speaker callback]setBlockOnPeripheralModelIsReadyToUpdateSubscribers:block];
 }
+
 - (void)peripheralModelBlockOnDidSubscribeToCharacteristic:(void(^)(CBPeripheralManager *peripheral,CBCentral *central,CBCharacteristic *characteristic))block {
     [[speaker callback]setBlockOnPeripheralModelDidSubscribeToCharacteristic:block];
 }
+
 - (void)peripheralModelBlockOnDidUnSubscribeToCharacteristic:(void(^)(CBPeripheralManager *peripheral,CBCentral *central,CBCharacteristic *characteristic))block {
     [[speaker callback]setBlockOnPeripheralModelDidUnSubscribeToCharacteristic:block];
 }
