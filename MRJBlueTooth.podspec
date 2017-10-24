@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MRJBlueTooth'
-  s.version          = '0.1.7.3'
+  s.version          = '0.1.7.4'
   s.summary          = '这是个蓝牙管理框架'
 
 # This description is used to generate tags and improve search results.

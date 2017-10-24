@@ -42,9 +42,6 @@
     NSMutableArray *reConnectPeripherals;
 }
 
-
-
-
 //扫描Peripherals
 - (void)scanPeripherals;
 //连接Peripherals

@@ -10,7 +10,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 # pragma mark -  行为定义
 
 // if show log 是否打印日志，默认1：打印 ，0：不打印
@@ -57,7 +56,6 @@
 //蓝牙扩展通知
 // did centralManager enable notification
 #define NotificationAtCentralManagerEnable @"NotificationAtCentralManagerEnable"
-
 
 
 # pragma mark -  定义的方法

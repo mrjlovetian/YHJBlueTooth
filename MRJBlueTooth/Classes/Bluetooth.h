@@ -1,9 +1,3 @@
-/*
- Bluetooth
- 简单易用的蓝牙ble库，基于CoreBluetooth 
- version:0.7.0
- */
-
 // Created by 余洪江 on  17/07/17.
 // Copyright (c) 2015年 余洪江. All rights reserved.
 

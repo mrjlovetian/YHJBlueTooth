@@ -23,8 +23,7 @@
 }
 
 - (instancetype)initWithscanForPeripheralsWithOptions:(NSDictionary *)scanForPeripheralsWithOptions
-        connectPeripheralWithOptions:(NSDictionary *)connectPeripheralWithOptions
-{
+        connectPeripheralWithOptions:(NSDictionary *)connectPeripheralWithOptions {
     self = [super init];
     if (self) {
         [self setScanForPeripheralsWithOptions:scanForPeripheralsWithOptions];
@@ -37,8 +36,7 @@
                         connectPeripheralWithOptions:(NSDictionary *)connectPeripheralWithOptions
                       scanForPeripheralsWithServices:(NSArray *)scanForPeripheralsWithServices
                       discoverWithServices:(NSArray *)discoverWithServices
-                      discoverWithCharacteristics:(NSArray *)discoverWithCharacteristics
-{
+                      discoverWithCharacteristics:(NSArray *)discoverWithCharacteristics {
     self = [self initWithscanForPeripheralsWithOptions:scanForPeripheralsWithOptions connectPeripheralWithOptions:connectPeripheralWithOptions];
     if (self) {
         [self setScanForPeripheralsWithServices:scanForPeripheralsWithServices];

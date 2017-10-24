@@ -18,7 +18,6 @@ typedef NS_ENUM(NSUInteger, SpeakerType) {
     SpeakerTypeDiscoverPeripheralsReadValueForDescriptorsBlock
 };
 
-
 @implementation Speaker {
     //所有委托频道
     NSMutableDictionary *channels;
