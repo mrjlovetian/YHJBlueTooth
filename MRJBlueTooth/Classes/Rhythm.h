@@ -1,12 +1,3 @@
-/*
- Bluetooth
- 简单易用的蓝牙ble库，基于CoreBluetooth  
-  
- 
- @brief  bluetooth Rhythm用于检测蓝牙的任务执行情况，处理复杂的蓝牙流程操作
- 
- */
-//
 //  Created by ZTELiuyw on  17/07/17.
 //  Copyright (c) 2015年 余洪江. All rights reserved.
 //

@@ -7,8 +7,6 @@
 // Created by 余洪江 on  17/07/17.
 // Copyright (c) 2015年 余洪江. All rights reserved.
 
-
-
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "CentralManager.h"

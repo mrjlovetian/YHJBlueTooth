@@ -1,10 +1,7 @@
 /*
  Bluetooth
- 简单易用的蓝牙ble库，基于CoreBluetooth  
-  
- 
-@brief  预定义一些库的执行行为和配置
- 
+ 简单易用的蓝牙ble库，基于CoreBluetooth
+ @brief  预定义一些库的执行行为和配置
  */
 
 // Created by 余洪江 on  17/07/17.

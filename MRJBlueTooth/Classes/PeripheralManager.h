@@ -1,10 +1,7 @@
 /*
  Bluetooth
  简单易用的蓝牙ble库，基于CoreBluetooth  
-  
- 
  @brief  蓝牙外设模式实现类
- 
  */
 
 

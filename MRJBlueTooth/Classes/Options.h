@@ -1,10 +1,7 @@
 /*
  Bluetooth
- 简单易用的蓝牙ble库，基于CoreBluetooth  
-  
- 
+ 简单易用的蓝牙ble库，基于CoreBluetooth 
  @brief  bluetooth 封装蓝牙外设模式的运行时参数，可以实现后台模式，重复接收广播，查找service参数，查找characteristic参数
- 
  */
 
 //  Created by 余洪江 on  17/07/177.
