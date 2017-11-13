@@ -11,7 +11,7 @@
 @interface PeripheralManager : NSObject<CBPeripheralManagerDelegate> {
 
 @public
-    //回叫方法
+    /// 回叫方法
     Speaker *speaker;
 }
 

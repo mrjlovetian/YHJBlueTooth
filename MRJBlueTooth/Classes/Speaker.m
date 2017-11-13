@@ -5,7 +5,6 @@
 #import "Speaker.h"
 #import "Define.h"
 
-
 typedef NS_ENUM(NSUInteger, SpeakerType) {
     SpeakerTypeDiscoverPeripherals,
     SpeakerTypeConnectedPeripheral,
