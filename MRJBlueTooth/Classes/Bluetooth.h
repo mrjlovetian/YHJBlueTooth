@@ -23,85 +23,85 @@
 /**
  找到Peripherals的block |  when find peripheral
  */
-- (void)setBlockOnDiscoverToPeripherals:(void (^)(CBCentralManager *central,CBPeripheral *peripheral,NSDictionary *advertisementData, NSNumber *RSSI))block;
+- (void)setBlockOnDiscoverToPeripherals:(void (^)(CBCentralManager *central, CBPeripheral *peripheral, NSDictionary *advertisementData, NSNumber *RSSI))block;
 
 /**
 连接Peripherals成功的block
 |  when connected peripheral 
 */
-- (void)setBlockOnConnected:(void (^)(CBCentralManager *central,CBPeripheral *peripheral))block;
+- (void)setBlockOnConnected:(void (^)(CBCentralManager *central, CBPeripheral *peripheral))block;
 
 /**
 连接Peripherals失败的block
 |  when fail to connect peripheral 
 */
-- (void)setBlockOnFailToConnect:(void (^)(CBCentralManager *central,CBPeripheral *peripheral,NSError *error))block;
+- (void)setBlockOnFailToConnect:(void (^)(CBCentralManager *central, CBPeripheral *peripheral, NSError *error))block;
 
 /**
 断开Peripherals的连接的block
 |  when disconnected peripheral 
 */
-- (void)setBlockOnDisconnect:(void (^)(CBCentralManager *central,CBPeripheral *peripheral,NSError *error))block;
+- (void)setBlockOnDisconnect:(void (^)(CBCentralManager *central, CBPeripheral *peripheral, NSError *error))block;
 
 /**
 设置查找服务的block
 |  when discover services of peripheral 
 */
-- (void)setBlockOnDiscoverServices:(void (^)(CBPeripheral *peripheral,NSError *error))block;
+- (void)setBlockOnDiscoverServices:(void (^)(CBPeripheral *peripheral, NSError *error))block;
 
 /**
 设置查找到Characteristics的block
 |  when discovered Characteristics 
 */
-- (void)setBlockOnDiscoverCharacteristics:(void (^)(CBPeripheral *peripheral,CBService *service,NSError *error))block;
+- (void)setBlockOnDiscoverCharacteristics:(void (^)(CBPeripheral *peripheral, CBService *service, NSError *error))block;
 
 /**
 设置获取到最新Characteristics值的block
 |  when read new characteristics value  or notiy a characteristics value 
 */
-- (void)setBlockOnReadValueForCharacteristic:(void (^)(CBPeripheral *peripheral,CBCharacteristic *characteristic,NSError *error))block;
+- (void)setBlockOnReadValueForCharacteristic:(void (^)(CBPeripheral *peripheral, CBCharacteristic *characteristic, NSError *error))block;
 
 /**
 设置查找到Descriptors名称的block
 |  when discover descriptors for characteristic 
 */
-- (void)setBlockOnDiscoverDescriptorsForCharacteristic:(void (^)(CBPeripheral *peripheral,CBCharacteristic *characteristic,NSError *error))block;
+- (void)setBlockOnDiscoverDescriptorsForCharacteristic:(void (^)(CBPeripheral *peripheral, CBCharacteristic *characteristic, NSError *error))block;
 
 /**
 设置读取到Descriptors值的block
 |  when read descriptors for characteristic 
 */
-- (void)setBlockOnReadValueForDescriptors:(void (^)(CBPeripheral *peripheral,CBDescriptor *descriptor,NSError *error))block;
+- (void)setBlockOnReadValueForDescriptors:(void (^)(CBPeripheral *peripheral, CBDescriptor *descriptor, NSError *error))block;
 
 /**
 写Characteristic成功后的block
 |  when did write value for characteristic successed 
 */
-- (void)setBlockOnDidWriteValueForCharacteristic:(void (^)(CBCharacteristic *characteristic,NSError *error))block;
+- (void)setBlockOnDidWriteValueForCharacteristic:(void (^)(CBCharacteristic *characteristic, NSError *error))block;
 
 /**
 写descriptor成功后的block
 |  when did write value for descriptor successed 
 */
-- (void)setBlockOnDidWriteValueForDescriptor:(void (^)(CBDescriptor *descriptor,NSError *error))block;
+- (void)setBlockOnDidWriteValueForDescriptor:(void (^)(CBDescriptor *descriptor, NSError *error))block;
 
 /**
 characteristic订阅状态改变的block
 |  when characteristic notification state changed 
 */
-- (void)setBlockOnDidUpdateNotificationStateForCharacteristic:(void (^)(CBCharacteristic *characteristic,NSError *error))block;
+- (void)setBlockOnDidUpdateNotificationStateForCharacteristic:(void (^)(CBCharacteristic *characteristic, NSError *error))block;
 
 /**
 读取RSSI的委托
 |  when did read RSSI 
 */
-- (void)setBlockOnDidReadRSSI:(void (^)(NSNumber *RSSI,NSError *error))block;
+- (void)setBlockOnDidReadRSSI:(void (^)(NSNumber *RSSI, NSError *error))block;
 
 /**
 discoverIncludedServices的回调，暂时在bluetooth中无作用
 |  no used in bluetooth 
 */
-- (void)setBlockOnDidDiscoverIncludedServicesForService:(void (^)(CBService *service,NSError *error))block;
+- (void)setBlockOnDidDiscoverIncludedServicesForService:(void (^)(CBService *service, NSError *error))block;
 
 /**
 外设更新名字后的block
@@ -113,7 +113,7 @@ discoverIncludedServices的回调，暂时在bluetooth中无作用
 外设更新服务后的block
 |  when peripheral update services 
 */
-- (void)setBlockOnDidModifyServices:(void (^)(CBPeripheral *peripheral,NSArray *invalidatedServices))block;
+- (void)setBlockOnDidModifyServices:(void (^)(CBPeripheral *peripheral, NSArray *invalidatedServices))block;
 
 // channel的委托
 /**
@@ -127,7 +127,7 @@ discoverIncludedServices的回调，暂时在bluetooth中无作用
 |  when find peripheral 
 */
 - (void)setBlockOnDiscoverToPeripheralsAtChannel:(NSString *)channel
-                                          block:(void (^)(CBCentralManager *central,CBPeripheral *peripheral,NSDictionary *advertisementData, NSNumber *RSSI))block;
+                                          block:(void (^)(CBCentralManager *central, CBPeripheral *peripheral, NSDictionary *advertisementData, NSNumber *RSSI))block;
 
 
 /**
@@ -135,21 +135,21 @@ discoverIncludedServices的回调，暂时在bluetooth中无作用
 |  when connected peripheral 
 */
 - (void)setBlockOnConnectedAtChannel:(NSString *)channel
-                              block:(void (^)(CBCentralManager *central,CBPeripheral *peripheral))block;
+                              block:(void (^)(CBCentralManager *central, CBPeripheral *peripheral))block;
 
 /**
 连接Peripherals失败的block
 |  when fail to connect peripheral 
 */
 - (void)setBlockOnFailToConnectAtChannel:(NSString *)channel
-                                  block:(void (^)(CBCentralManager *central,CBPeripheral *peripheral,NSError *error))block;
+                                  block:(void (^)(CBCentralManager *central, CBPeripheral *peripheral, NSError *error))block;
 
 /**
 断开Peripherals的连接的block
 |  when disconnected peripheral 
 */
 - (void)setBlockOnDisconnectAtChannel:(NSString *)channel
-                               block:(void (^)(CBCentralManager *central,CBPeripheral *peripheral,NSError *error))block;
+                               block:(void (^)(CBCentralManager *central, CBPeripheral *peripheral, NSError *error))block;
 
 
 /**
@@ -164,28 +164,28 @@ discoverIncludedServices的回调，暂时在bluetooth中无作用
 |  when discovered Characteristics 
 */
 - (void)setBlockOnDiscoverCharacteristicsAtChannel:(NSString *)channel
-                                            block:(void (^)(CBPeripheral *peripheral,CBService *service,NSError *error))block;
+                                            block:(void (^)(CBPeripheral *peripheral, CBService *service, NSError *error))block;
 
 /**
 设置获取到最新Characteristics值的block
 |  when read new characteristics value  or notiy a characteristics value 
 */
 - (void)setBlockOnReadValueForCharacteristicAtChannel:(NSString *)channel
-                                               block:(void (^)(CBPeripheral *peripheral,CBCharacteristic *characteristic,NSError *error))block;
+                                               block:(void (^)(CBPeripheral *peripheral, CBCharacteristic *characteristic, NSError *error))block;
 
 /**
 设置查找到Characteristics描述的block
 |  when discover descriptors for characteristic 
 */
 - (void)setBlockOnDiscoverDescriptorsForCharacteristicAtChannel:(NSString *)channel
-                                                         block:(void (^)(CBPeripheral *peripheral,CBCharacteristic *service,NSError *error))block;
+                                                         block:(void (^)(CBPeripheral *peripheral, CBCharacteristic *service, NSError *error))block;
 
 /**
 设置读取到Characteristics描述的值的block
 |  when read descriptors for characteristic 
 */
 - (void)setBlockOnReadValueForDescriptorsAtChannel:(NSString *)channel
-                                            block:(void (^)(CBPeripheral *peripheral,CBDescriptor *descriptor,NSError *error))block;
+                                            block:(void (^)(CBPeripheral *peripheral, CBDescriptor *descriptor, NSError *error))block;
 
 
 /**
@@ -193,14 +193,14 @@ discoverIncludedServices的回调，暂时在bluetooth中无作用
 |  when did write value for characteristic successed 
 */
 - (void)setBlockOnDidWriteValueForCharacteristicAtChannel:(NSString *)channel
-                                                   block:(void (^)(CBCharacteristic *characteristic,NSError *error))block;
+                                                   block:(void (^)(CBCharacteristic *characteristic, NSError *error))block;
 
 /**
 写descriptor成功后的block
 |  when did write value for descriptor successed 
 */
 - (void)setBlockOnDidWriteValueForDescriptorAtChannel:(NSString *)channel
-                                               block:(void (^)(CBDescriptor *descriptor,NSError *error))block;
+                                               block:(void (^)(CBDescriptor *descriptor, NSError *error))block;
 
 
 /**
@@ -208,21 +208,21 @@ characteristic订阅状态改变的block
 |  when characteristic notification state changed 
 */
 - (void)setBlockOnDidUpdateNotificationStateForCharacteristicAtChannel:(NSString *)channel
-                                                                block:(void (^)(CBCharacteristic *characteristic,NSError *error))block;
+                                                                block:(void (^)(CBCharacteristic *characteristic, NSError *error))block;
 
 /**
 读取RSSI的委托
 |  when did read RSSI 
 */
 - (void)setBlockOnDidReadRSSIAtChannel:(NSString *)channel
-                                block:(void (^)(NSNumber *RSSI,NSError *error))block;
+                                block:(void (^)(NSNumber *RSSI, NSError *error))block;
 
 /**
 discoverIncludedServices的回调，暂时在bluetooth中无作用
 |  no used in bluetooth 
 */
 - (void)setBlockOnDidDiscoverIncludedServicesForServiceAtChannel:(NSString *)channel
-                                                          block:(void (^)(CBService *service,NSError *error))block;
+                                                          block:(void (^)(CBService *service, NSError *error))block;
 
 /**
 外设更新名字后的block
@@ -236,7 +236,7 @@ discoverIncludedServices的回调，暂时在bluetooth中无作用
 |  when peripheral update services 
 */
 - (void)setBlockOnDidModifyServicesAtChannel:(NSString *)channel
-                                      block:(void (^)(CBPeripheral *peripheral,NSArray *invalidatedServices))block;
+                                      block:(void (^)(CBPeripheral *peripheral, NSArray *invalidatedServices))block;
 
 
 #pragma mark - bluetooth filter
@@ -505,19 +505,19 @@ characteristic:(CBCharacteristic *)characteristic
 /**
  PeripheralManager did add service block
  */
-- (void)peripheralModelBlockOnDidAddService:(void(^)(CBPeripheralManager *peripheral,CBService *service,NSError *error))block;
+- (void)peripheralModelBlockOnDidAddService:(void(^)(CBPeripheralManager *peripheral, CBService *service, NSError *error))block;
 /**
  PeripheralManager did start advertising block
  */
-- (void)peripheralModelBlockOnDidStartAdvertising:(void(^)(CBPeripheralManager *peripheral,NSError *error))block;
+- (void)peripheralModelBlockOnDidStartAdvertising:(void(^)(CBPeripheralManager *peripheral, NSError *error))block;
 /**
  peripheralManager did receive read request block
  */
-- (void)peripheralModelBlockOnDidReceiveReadRequest:(void(^)(CBPeripheralManager *peripheral,CBATTRequest *request))block;
+- (void)peripheralModelBlockOnDidReceiveReadRequest:(void(^)(CBPeripheralManager *peripheral, CBATTRequest *request))block;
 /**
  peripheralManager did receive write request block
  */
-- (void)peripheralModelBlockOnDidReceiveWriteRequests:(void(^)(CBPeripheralManager *peripheral,NSArray *requests))block;
+- (void)peripheralModelBlockOnDidReceiveWriteRequests:(void(^)(CBPeripheralManager *peripheral, NSArray *requests))block;
 /**
  peripheralManager is ready to update subscribers
  */
@@ -525,11 +525,11 @@ characteristic:(CBCharacteristic *)characteristic
 /**
  peripheralManager did subscribe to characteristic block
  */
-- (void)peripheralModelBlockOnDidSubscribeToCharacteristic:(void(^)(CBPeripheralManager *peripheral,CBCentral *central,CBCharacteristic *characteristic))block;
+- (void)peripheralModelBlockOnDidSubscribeToCharacteristic:(void(^)(CBPeripheralManager *peripheral, CBCentral *central, CBCharacteristic *characteristic))block;
 /**
  peripheralManager did unsubscribe to characteristic block
 */
-- (void)peripheralModelBlockOnDidUnSubscribeToCharacteristic:(void(^)(CBPeripheralManager *peripheral,CBCentral *central,CBCharacteristic *characteristic))block;
+- (void)peripheralModelBlockOnDidUnSubscribeToCharacteristic:(void(^)(CBPeripheralManager *peripheral, CBCentral *central, CBCharacteristic *characteristic))block;
 
 @end
 

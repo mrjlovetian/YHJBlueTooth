@@ -8,51 +8,51 @@
 //设备状态改变的委托
 typedef void (^BBCentralManagerDidUpdateStateBlock)(CBCentralManager *central);
 //找到设备的委托
-typedef void (^BBDiscoverPeripheralsBlock)(CBCentralManager *central,CBPeripheral *peripheral,NSDictionary *advertisementData, NSNumber *RSSI);
+typedef void (^BBDiscoverPeripheralsBlock)(CBCentralManager *central, CBPeripheral *peripheral, NSDictionary *advertisementData, NSNumber *RSSI);
 //连接设备成功的block
-typedef void (^BBConnectedPeripheralBlock)(CBCentralManager *central,CBPeripheral *peripheral);
+typedef void (^BBConnectedPeripheralBlock)(CBCentralManager *central, CBPeripheral *peripheral);
 //连接设备失败的block
-typedef void (^BBFailToConnectBlock)(CBCentralManager *central,CBPeripheral *peripheral,NSError *error);
+typedef void (^BBFailToConnectBlock)(CBCentralManager *central, CBPeripheral *peripheral, NSError *error);
 //断开设备连接的bock
-typedef void (^BBDisconnectBlock)(CBCentralManager *central,CBPeripheral *peripheral,NSError *error);
+typedef void (^BBDisconnectBlock)(CBCentralManager *central, CBPeripheral *peripheral, NSError *error);
 //找到服务的block
-typedef void (^BBDiscoverServicesBlock)(CBPeripheral *peripheral,NSError *error);
+typedef void (^BBDiscoverServicesBlock)(CBPeripheral *peripheral, NSError *error);
 //找到Characteristics的block
-typedef void (^BBDiscoverCharacteristicsBlock)(CBPeripheral *peripheral,CBService *service,NSError *error);
+typedef void (^BBDiscoverCharacteristicsBlock)(CBPeripheral *peripheral, CBService *service, NSError *error);
 //更新（获取）Characteristics的value的block
-typedef void (^BBReadValueForCharacteristicBlock)(CBPeripheral *peripheral,CBCharacteristic *characteristic,NSError *error);
+typedef void (^BBReadValueForCharacteristicBlock)(CBPeripheral *peripheral, CBCharacteristic *characteristic, NSError *error);
 //获取Characteristics的名称
-typedef void (^BBDiscoverDescriptorsForCharacteristicBlock)(CBPeripheral *peripheral,CBCharacteristic *service,NSError *error);
+typedef void (^BBDiscoverDescriptorsForCharacteristicBlock)(CBPeripheral *peripheral, CBCharacteristic *service, NSError *error);
 //获取Descriptors的值
-typedef void (^BBReadValueForDescriptorsBlock)(CBPeripheral *peripheral,CBDescriptor *descriptor,NSError *error);
+typedef void (^BBReadValueForDescriptorsBlock)(CBPeripheral *peripheral,CBDescriptor *descriptor, NSError *error);
 //Bluettooth cancelScanBlock方法调用后的回调
 typedef void (^BBCancelScanBlock)(CBCentralManager *centralManager);
 //Bluettooth cancelAllPeripheralsConnection 方法调用后的回调
 typedef void (^BBCancelAllPeripheralsConnectionBlock)(CBCentralManager *centralManager);
 
-typedef void (^BBDidWriteValueForCharacteristicBlock)(CBCharacteristic *characteristic,NSError *error);
+typedef void (^BBDidWriteValueForCharacteristicBlock)(CBCharacteristic *characteristic, NSError *error);
 
-typedef void (^BBDidWriteValueForDescriptorBlock)(CBDescriptor *descriptor,NSError *error);
+typedef void (^BBDidWriteValueForDescriptorBlock)(CBDescriptor *descriptor, NSError *error);
 
-typedef void (^BBDidUpdateNotificationStateForCharacteristicBlock)(CBCharacteristic *characteristic,NSError *error);
+typedef void (^BBDidUpdateNotificationStateForCharacteristicBlock)(CBCharacteristic *characteristic, NSError *error);
 
-typedef void (^BBDidReadRSSIBlock)(NSNumber *RSSI,NSError *error);
+typedef void (^BBDidReadRSSIBlock)(NSNumber *RSSI, NSError *error);
 
-typedef void (^BBDidDiscoverIncludedServicesForServiceBlock)(CBService *service,NSError *error);
+typedef void (^BBDidDiscoverIncludedServicesForServiceBlock)(CBService *service, NSError *error);
 
 typedef void (^BBDidUpdateNameBlock)(CBPeripheral *peripheral);
 
-typedef void (^BBDidModifyServicesBlock)(CBPeripheral *peripheral,NSArray *invalidatedServices);
+typedef void (^BBDidModifyServicesBlock)(CBPeripheral *peripheral, NSArray *invalidatedServices);
 
 //peripheral model
 typedef void (^BBPeripheralModelDidUpdateState)(CBPeripheralManager *peripheral);
-typedef void (^BBPeripheralModelDidAddService)(CBPeripheralManager *peripheral,CBService *service,NSError *error);
-typedef void (^BBPeripheralModelDidStartAdvertising)(CBPeripheralManager *peripheral,NSError *error);
-typedef void (^BBPeripheralModelDidReceiveReadRequest)(CBPeripheralManager *peripheral,CBATTRequest *request);
-typedef void (^BBPeripheralModelDidReceiveWriteRequests)(CBPeripheralManager *peripheral,NSArray *requests);
+typedef void (^BBPeripheralModelDidAddService)(CBPeripheralManager *peripheral,CBService *service, NSError *error);
+typedef void (^BBPeripheralModelDidStartAdvertising)(CBPeripheralManager *peripheral, NSError *error);
+typedef void (^BBPeripheralModelDidReceiveReadRequest)(CBPeripheralManager *peripheral, CBATTRequest *request);
+typedef void (^BBPeripheralModelDidReceiveWriteRequests)(CBPeripheralManager *peripheral, NSArray *requests);
 typedef void (^BBPeripheralModelIsReadyToUpdateSubscribers)(CBPeripheralManager *peripheral);
-typedef void (^BBPeripheralModelDidSubscribeToCharacteristic)(CBPeripheralManager *peripheral,CBCentral *central,CBCharacteristic *characteristic);
-typedef void (^BBPeripheralModelDidUnSubscribeToCharacteristic)(CBPeripheralManager *peripheral,CBCentral *central,CBCharacteristic *characteristic);
+typedef void (^BBPeripheralModelDidSubscribeToCharacteristic)(CBPeripheralManager *peripheral, CBCentral *central, CBCharacteristic *characteristic);
+typedef void (^BBPeripheralModelDidUnSubscribeToCharacteristic)(CBPeripheralManager *peripheral, CBCentral *central, CBCharacteristic *characteristic);
 
 
 

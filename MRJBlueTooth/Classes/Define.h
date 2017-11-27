@@ -63,8 +63,6 @@
 // log
 #define MRJLog(fmt, ...) if(K_IS_SHOW_LOG) { NSLog(fmt,##__VA_ARGS__); }
 
-
-
 @interface Define : NSObject
 
 @end
