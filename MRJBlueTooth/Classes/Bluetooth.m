@@ -697,5 +697,3 @@ characteristic:(CBCharacteristic *)characteristic
 }
 
 @end
-
-

@@ -83,7 +83,6 @@
 #pragma mark - CBCentralManagerDelegate委托方法
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
-    
     //发送通知
     [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtCentralManagerDidUpdateState object:@{@"central":central}];
     
@@ -176,7 +175,6 @@
         [peripheral discoverServices:[currChannel options].discoverWithServices];
         //discoverIncludedServices
     }
-    
 }
 
 //连接到Peripherals-失败
@@ -197,8 +195,7 @@
     [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtDidDisconnectPeripheral
                                                        object:@{@"central":central,@"peripheral":peripheral,@"error":error?error:@""}];
     //    Log(@">>>外设连接断开连接 %@: %@\n", [peripheral name], [error localizedDescription]);
-    if (error)
-    {
+    if (error) {
         MRJLog(@">>> didDisconnectPeripheral for %@ with error: %@", peripheral.name, [error localizedDescription]);
     }
     
