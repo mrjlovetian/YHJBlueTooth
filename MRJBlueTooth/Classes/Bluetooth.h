@@ -379,10 +379,12 @@ sec秒后停止
 谓词，返回self
  */
 - (Bluetooth *) and;
+
 /**
 谓词，返回self
  */
 - (Bluetooth *) then;
+
 /**
 谓词，返回self
  */
@@ -502,26 +504,32 @@ characteristic:(CBCharacteristic *)characteristic
  PeripheralManager did update state block
  */
 - (void)peripheralModelBlockOnPeripheralManagerDidUpdateState:(void(^)(CBPeripheralManager *peripheral))block;
+
 /**
  PeripheralManager did add service block
  */
 - (void)peripheralModelBlockOnDidAddService:(void(^)(CBPeripheralManager *peripheral, CBService *service, NSError *error))block;
+
 /**
  PeripheralManager did start advertising block
  */
 - (void)peripheralModelBlockOnDidStartAdvertising:(void(^)(CBPeripheralManager *peripheral, NSError *error))block;
+
 /**
  peripheralManager did receive read request block
  */
 - (void)peripheralModelBlockOnDidReceiveReadRequest:(void(^)(CBPeripheralManager *peripheral, CBATTRequest *request))block;
+
 /**
  peripheralManager did receive write request block
  */
 - (void)peripheralModelBlockOnDidReceiveWriteRequests:(void(^)(CBPeripheralManager *peripheral, NSArray *requests))block;
+
 /**
  peripheralManager is ready to update subscribers
  */
 - (void)peripheralModelBlockOnIsReadyToUpdateSubscribers:(void(^)(CBPeripheralManager *peripheral))block;
+
 /**
  peripheralManager did subscribe to characteristic block
  */

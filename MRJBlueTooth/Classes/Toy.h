@@ -5,8 +5,6 @@
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
-
-
 @interface Toy : NSObject
 
 //十六进制转换为普通字符串的。

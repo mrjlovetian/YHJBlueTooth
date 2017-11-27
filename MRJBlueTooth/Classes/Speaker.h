@@ -5,7 +5,6 @@
 #import "Callback.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 
-
 @interface Speaker : NSObject
 
 - (Callback *)callback;
