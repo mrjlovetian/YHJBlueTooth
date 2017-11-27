@@ -35,8 +35,6 @@
 */
 @property (nonatomic, copy) NSDictionary *connectPeripheralWithOptions;
 
-
-
 /*!
  * 扫描参数,centralManager:scanForPeripheralsWithServices:self.scanForPeripheralsWithServices options:self.scanForPeripheralsWithOptions
  *@param serviceUUIDs A list of <code>CBUUID</code> objects representing the service(s) to scan for.

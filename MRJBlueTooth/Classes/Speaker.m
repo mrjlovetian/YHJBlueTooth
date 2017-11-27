@@ -70,12 +70,10 @@ typedef NS_ENUM(NSUInteger, SpeakerType) {
         if ([self callbackOnChnnel:channel]) {
             currChannel = channel;
             MRJLog(@">>>已切换到%@",channel);
-        }
-        else {
+        } else {
             MRJLog(@">>>所要切换的channel不存在");
         }
-    }
-    else {
+    } else {
         currChannel = K_DETAULT_CHANNEL;
             MRJLog(@">>>已切换到默认频道");
     }
@@ -101,4 +99,5 @@ typedef NS_ENUM(NSUInteger, SpeakerType) {
 - (void(^)(CBPeripheral *peripheral, CBCharacteristic *characteristics, NSError *error))notifyCallback:(CBCharacteristic *)c {
     return [notifyList objectForKey:c.UUID.description];
 }
+
 @end

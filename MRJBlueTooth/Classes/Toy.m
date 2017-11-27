@@ -8,7 +8,6 @@
 
 //十六进制转换为普通字符串的。
 + (NSString *)ConvertHexStringToString:(NSString *)hexString {
-    
     char *myBuffer = (char *)malloc((int)[hexString length] / 2 + 1);
     bzero(myBuffer, [hexString length] / 2 + 1);
     for (int i = 0; i < [hexString length] - 1; i += 2) {
@@ -34,8 +33,7 @@
         
         if ([newHexStr length]==1) {
            hexStr = [NSString stringWithFormat:@"%@0%@",hexStr,newHexStr];
-        }
-        else{
+        } else{
             hexStr = [NSString stringWithFormat:@"%@%@",hexStr,newHexStr];
         }
     }

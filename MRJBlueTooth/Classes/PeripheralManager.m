@@ -26,7 +26,6 @@
     return  self;    
 }
 
-
 - (PeripheralManager *(^)())startAdvertising {
     return ^PeripheralManager *() {
         
@@ -192,7 +191,6 @@
     callbackBlock(blockOnPeripheralModelDidUnSubscribeToCharacteristic)(peripheral,central,characteristic);
 }
 
-
 @end
 
 void makeCharacteristicToService(CBMutableService *service,NSString *UUID,NSString *properties,NSString *descriptor) {
@@ -250,14 +248,12 @@ void makeStaticCharacteristicToService(CBMutableService *service,NSString *UUID,
 }
 
 
-CBMutableService* makeCBService(NSString *UUID)
-{
+CBMutableService* makeCBService(NSString *UUID) {
     CBMutableService *s = [[CBMutableService alloc]initWithType:[CBUUID UUIDWithString:UUID] primary:YES];
     return s;
 }
 
-NSString * genUUID()
-{
+NSString * genUUID() {
     CFUUIDRef uuid_ref = CFUUIDCreate(NULL);
     CFStringRef uuid_string_ref= CFUUIDCreateString(NULL, uuid_ref);
     
