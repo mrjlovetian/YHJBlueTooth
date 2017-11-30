@@ -57,7 +57,6 @@
 // did centralManager enable notification
 #define NotificationAtCentralManagerEnable @"NotificationAtCentralManagerEnable"
 
-
 # pragma mark -  定义的方法
 
 // log

@@ -439,7 +439,7 @@
         
         //听见定时器执行Stop
         timerForStop = [NSTimer timerWithTimeInterval:sec target:self selector:@selector(Stop) userInfo:nil repeats:NO];
-        [timerForStop setFireDate: [[NSDate date]dateByAddingTimeInterval:sec]];
+        [timerForStop setFireDate: [[NSDate date] dateByAddingTimeInterval:sec]];
         [[NSRunLoop currentRunLoop] addTimer:timerForStop forMode:NSRunLoopCommonModes];
         
         return self;
@@ -580,8 +580,7 @@
             self->centralManager->oneReadValueForDescriptors = YES;
             [peripheral readValueForCharacteristic:characteristic];
             [peripheral discoverDescriptorsForCharacteristic:characteristic];
-        }
-        else {
+        } else {
             MRJLog(@"!!!设备当前处于非连接状态");
         }
         
@@ -668,7 +667,7 @@ characteristic:(CBCharacteristic *)characteristic
     [[speaker callback]setBlockOnPeripheralModelDidUpdateState:block];
 }
 
-- (void)peripheralModelBlockOnDidAddService:(void(^)(CBPeripheralManager *peripheral,CBService *service,NSError *error))block {
+- (void)peripheralModelBlockOnDidAddService:(void(^)(CBPeripheralManager *peripheral, CBService *service ,NSError *error))block {
     [[speaker callback]setBlockOnPeripheralModelDidAddService:block];
 }
 
@@ -680,7 +679,7 @@ characteristic:(CBCharacteristic *)characteristic
     [[speaker callback]setBlockOnPeripheralModelDidReceiveReadRequest:block];
 }
 
-- (void)peripheralModelBlockOnDidReceiveWriteRequests:(void(^)(CBPeripheralManager *peripheral,NSArray *requests))block {
+- (void)peripheralModelBlockOnDidReceiveWriteRequests:(void(^)(CBPeripheralManager *peripheral, NSArray *requests))block {
     [[speaker callback]setBlockOnPeripheralModelDidReceiveWriteRequests:block];
 }
 
@@ -688,11 +687,11 @@ characteristic:(CBCharacteristic *)characteristic
     [[speaker callback]setBlockOnPeripheralModelIsReadyToUpdateSubscribers:block];
 }
 
-- (void)peripheralModelBlockOnDidSubscribeToCharacteristic:(void(^)(CBPeripheralManager *peripheral,CBCentral *central,CBCharacteristic *characteristic))block {
+- (void)peripheralModelBlockOnDidSubscribeToCharacteristic:(void(^)(CBPeripheralManager *peripheral, CBCentral *central, CBCharacteristic *characteristic))block {
     [[speaker callback]setBlockOnPeripheralModelDidSubscribeToCharacteristic:block];
 }
 
-- (void)peripheralModelBlockOnDidUnSubscribeToCharacteristic:(void(^)(CBPeripheralManager *peripheral,CBCentral *central,CBCharacteristic *characteristic))block {
+- (void)peripheralModelBlockOnDidUnSubscribeToCharacteristic:(void(^)(CBPeripheralManager *peripheral, CBCentral *central, CBCharacteristic *characteristic))block {
     [[speaker callback]setBlockOnPeripheralModelDidUnSubscribeToCharacteristic:block];
 }
 

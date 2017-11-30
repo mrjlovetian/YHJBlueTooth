@@ -51,8 +51,7 @@
                    }];
             }
           
-        }
-        else {
+        } else {
             PERIPHERAL_MANAGER_INIT_WAIT_TIMES++;
             if (PERIPHERAL_MANAGER_INIT_WAIT_TIMES > 5) {
                 MRJLog(@">>>error： 第%d次等待peripheralManager打开任然失败，请检查蓝牙设备是否可用",PERIPHERAL_MANAGER_INIT_WAIT_TIMES);
@@ -227,6 +226,7 @@ void makeCharacteristicToService(CBMutableService *service,NSString *UUID,NSStri
     [cs addObject:c];
     service.characteristics = [cs copy];
 }
+
 void makeStaticCharacteristicToService(CBMutableService *service,NSString *UUID,NSString *descriptor,NSData *data) {
     
     CBMutableCharacteristic *c = [[CBMutableCharacteristic alloc]initWithType:[CBUUID UUIDWithString:UUID] properties:CBCharacteristicPropertyRead  value:data permissions:CBAttributePermissionsReadable];

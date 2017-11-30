@@ -24,7 +24,6 @@
                                  //重设centralManager恢复的IdentifierKey
                                  @"BluetoothRestore",CBCentralManagerOptionRestoreIdentifierKey,
                                  nil];
-        
 #else
         NSDictionary *options = nil;
 #endif
@@ -33,8 +32,7 @@
         if ([backgroundModes containsObject:@"bluetooth-central"]) {
             //后台模式
             centralManager = [[CBCentralManager alloc]initWithDelegate:self queue:nil options:options];
-        }
-        else {
+        } else {
             //非后台模式
             centralManager = [[CBCentralManager alloc]initWithDelegate:self queue:nil];
         }
@@ -85,7 +83,6 @@
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
     //发送通知
     [[NSNotificationCenter defaultCenter]postNotificationName:NotificationAtCentralManagerDidUpdateState object:@{@"central":central}];
-    
     switch (central.state) {
         case CBCentralManagerStateUnknown:
             MRJLog(@">>>CBCentralManagerStateUnknown");
@@ -121,7 +118,6 @@
 
 //扫描到Peripherals
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
-    
     //日志
     //Log(@"当扫描到设备:%@",peripheral.name);
     [self addDiscoverPeripheral:peripheral];

@@ -55,13 +55,11 @@ typedef NS_ENUM(NSUInteger, SpeakerType) {
 
 - (Callback *)callbackOnChnnel:(NSString *)channel
                createWhenNotExist:(BOOL)createWhenNotExist {
-    
     Callback *callback = [channels objectForKey:channel];
     if (!callback && createWhenNotExist) {
         callback = [[Callback alloc]init];
         [channels setObject:callback forKey:channel];
     }
-    
     return callback;
 }
 
