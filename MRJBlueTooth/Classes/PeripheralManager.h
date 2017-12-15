@@ -48,7 +48,6 @@
 //设备广播包数据
 @property (nonatomic, strong) NSData *manufacturerData;
 
-
 @end
 
 /**

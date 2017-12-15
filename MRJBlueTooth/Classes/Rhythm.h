@@ -16,6 +16,7 @@ typedef void (^BBBeatsOverBlock)(Rhythm *bry);
 @property NSInteger beatsInterval;
 
 #pragma mark beats
+
 /// 心跳
 - (void)beats;
 

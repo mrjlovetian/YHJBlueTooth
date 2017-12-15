@@ -44,87 +44,87 @@
     [[speaker callback]setBlockOnCentralManagerDidUpdateState:block];
 }
 
-//找到Peripherals的委托
+/// 找到Peripherals的委托
 - (void)setBlockOnDiscoverToPeripherals:(void (^)(CBCentralManager *central,CBPeripheral *peripheral,NSDictionary *advertisementData, NSNumber *RSSI))block{
     [[speaker callback]setBlockOnDiscoverPeripherals:block];
 }
 
-//连接Peripherals成功的委托
+/// 连接Peripherals成功的委托
 - (void)setBlockOnConnected:(void (^)(CBCentralManager *central,CBPeripheral *peripheral))block {
     [[speaker callback]setBlockOnConnectedPeripheral:block];
 }
 
-//连接Peripherals失败的委托
+/// 连接Peripherals失败的委托
 - (void)setBlockOnFailToConnect:(void (^)(CBCentralManager *central,CBPeripheral *peripheral,NSError *error))block {
     [[speaker callback]setBlockOnFailToConnect:block];
 }
 
-//断开Peripherals的连接
+/// 断开Peripherals的连接
 - (void)setBlockOnDisconnect:(void (^)(CBCentralManager *central,CBPeripheral *peripheral,NSError *error))block {
     [[speaker callback]setBlockOnDisconnect:block];
 }
 
-//设置查找服务回叫
+/// 设置查找服务回叫
 - (void)setBlockOnDiscoverServices:(void (^)(CBPeripheral *peripheral,NSError *error))block {
     [[speaker callback]setBlockOnDiscoverServices:block];
 }
 
-//设置查找到Characteristics的block
+/// 设置查找到Characteristics的block
 - (void)setBlockOnDiscoverCharacteristics:(void (^)(CBPeripheral *peripheral,CBService *service,NSError *error))block {
     [[speaker callback]setBlockOnDiscoverCharacteristics:block];
 }
 
-//设置获取到最新Characteristics值的block
+/// 设置获取到最新Characteristics值的block
 - (void)setBlockOnReadValueForCharacteristic:(void (^)(CBPeripheral *peripheral,CBCharacteristic *characteristic,NSError *error))block {
     [[speaker callback]setBlockOnReadValueForCharacteristic:block];
 }
 
-//设置查找到Characteristics描述的block
+/// 设置查找到Characteristics描述的block
 - (void)setBlockOnDiscoverDescriptorsForCharacteristic:(void (^)(CBPeripheral *peripheral,CBCharacteristic *service,NSError *error))block {
     [[speaker callback]setBlockOnDiscoverDescriptorsForCharacteristic:block];
 }
 
-//设置读取到Characteristics描述的值的block
+/// 设置读取到Characteristics描述的值的block
 - (void)setBlockOnReadValueForDescriptors:(void (^)(CBPeripheral *peripheral,CBDescriptor *descriptor,NSError *error))block {
     [[speaker callback]setBlockOnReadValueForDescriptors:block];
 }
 
-//写Characteristic成功后的block
+/// 写Characteristic成功后的block
 - (void)setBlockOnDidWriteValueForCharacteristic:(void (^)(CBCharacteristic *characteristic,NSError *error))block {
     [[speaker callback]setBlockOnDidWriteValueForCharacteristic:block];
 }
 
-//写descriptor成功后的block
+/// 写descriptor成功后的block
 - (void)setBlockOnDidWriteValueForDescriptor:(void (^)(CBDescriptor *descriptor,NSError *error))block {
     [[speaker callback]setBlockOnDidWriteValueForDescriptor:block];
 }
 
-//characteristic订阅状态改变的block
+/// characteristic订阅状态改变的block
 - (void)setBlockOnDidUpdateNotificationStateForCharacteristic:(void (^)(CBCharacteristic *characteristic,NSError *error))block {
     [[speaker callback]setBlockOnDidUpdateNotificationStateForCharacteristic:block];
 }
 
-//读取RSSI的委托
+/// 读取RSSI的委托
 - (void)setBlockOnDidReadRSSI:(void (^)(NSNumber *RSSI,NSError *error))block {
     [[speaker callback]setBlockOnDidReadRSSI:block];
 }
 
-//discoverIncludedServices的回调，暂时在bluetooth中无作用
+/// discoverIncludedServices的回调，暂时在bluetooth中无作用
 - (void)setBlockOnDidDiscoverIncludedServicesForService:(void (^)(CBService *service,NSError *error))block {
     [[speaker callback]setBlockOnDidDiscoverIncludedServicesForService:block];
 }
 
-//外设更新名字后的block
+/// 外设更新名字后的block
 - (void)setBlockOnDidUpdateName:(void (^)(CBPeripheral *peripheral))block {
     [[speaker callback]setBlockOnDidUpdateName:block];
 }
 
-//外设更新服务后的block
+/// 外设更新服务后的block
 - (void)setBlockOnDidModifyServices:(void (^)(CBPeripheral *peripheral,NSArray *invalidatedServices))block {
     [[speaker callback]setBlockOnDidModifyServices:block];
 }
 
-//设置蓝牙使用的参数参数
+/// 设置蓝牙使用的参数参数
 - (void)setBabyOptionsWithScanForPeripheralsWithOptions:(NSDictionary *) scanForPeripheralsWithOptions
                           connectPeripheralWithOptions:(NSDictionary *) connectPeripheralWithOptions
                         scanForPeripheralsWithServices:(NSArray *)scanForPeripheralsWithServices
@@ -134,9 +134,7 @@
     [[speaker callback]setOptions:option];
 }
 
-/*
- channel的委托
- */
+#pragma mark channel的委托
 /// 设备状态改变的委托
 - (void)setBlockOnCentralManagerDidUpdateStateAtChannel:(NSString *)channel
                                                  block:(void (^)(CBCentralManager *central))block {
@@ -476,7 +474,6 @@
     };
 }
 
-
 /// 切换委托频道
 - (Bluetooth *(^)(NSString *channel)) channel {
     return ^Bluetooth *(NSString *channel) {
@@ -530,7 +527,6 @@
         NSException *e = [NSException exceptionWithName:@"BadyBluetooth usage exception" reason:[faildReason lastObject]  userInfo:nil];
         @throw e;
     }
-  
 }
 
 - (Bluetooth *) and {
@@ -560,11 +556,11 @@
     [centralManager cancelPeripheralConnection:peripheral];
 }
 
-//断开所有连接
+/// 断开所有连接
 - (void)cancelAllPeripheralsConnection {
     [centralManager cancelAllPeripheralsConnection];
 }
-//停止扫描
+/// 停止扫描
 - (void)cancelScan{
     [centralManager cancelScan];
 }
@@ -583,7 +579,6 @@
         } else {
             MRJLog(@"!!!设备当前处于非连接状态");
         }
-        
         return self;
     };
 }
@@ -602,7 +597,7 @@ characteristic:(CBCharacteristic *)characteristic
     [speaker removeNotifyCallback:characteristic];
 }
 
-//获取当前连接的peripherals
+/// 获取当前连接的peripherals
 - (NSArray *)findConnectedPeripherals {
      return [centralManager findConnectedPeripherals];
 }
