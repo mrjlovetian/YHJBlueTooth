@@ -439,7 +439,6 @@
         timerForStop = [NSTimer timerWithTimeInterval:sec target:self selector:@selector(Stop) userInfo:nil repeats:NO];
         [timerForStop setFireDate: [[NSDate date] dateByAddingTimeInterval:sec]];
         [[NSRunLoop currentRunLoop] addTimer:timerForStop forMode:NSRunLoopCommonModes];
-        
         return self;
     };
 }

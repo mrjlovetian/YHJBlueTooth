@@ -7,7 +7,6 @@
 #import "Toy.h"
 #import "Speaker.h"
 
-
 @interface PeripheralManager : NSObject<CBPeripheralManagerDelegate> {
 
 @public
@@ -15,43 +14,34 @@
     Speaker *speaker;
 }
 
-/**
- 添加服务
- */
+/// 添加服务
 - (PeripheralManager *(^)(NSArray *array))addServices;
 
-/**
- 添加广播包数据
- */
+/// 添加广播包数据
 - (PeripheralManager *(^)(NSData *data))addManufacturerData;
-/**
- 移除广播包数据
- */
+
+/// 移除广播包数据
 - (PeripheralManager *(^)())removeAllServices;
 
-/**
-启动广播
- */
+/// 启动广播
 - (PeripheralManager *(^)())startAdvertising;
 
-/**
- 停止广播
- */
+/// 停止广播
 - (PeripheralManager *(^)())stopAdvertising;
 
-//外设管理器
+/// 外设管理器
 @property (nonatomic, strong) CBPeripheralManager *peripheralManager;
-//设备名称
+/// 设备名称
 @property (nonatomic, copy) NSString *localName;
-//设备服务
+/// 设备服务
 @property (nonatomic, strong) NSMutableArray *services;
-//设备广播包数据
+/// 设备广播包数据
 @property (nonatomic, strong) NSData *manufacturerData;
 
 @end
 
-/**
- *  构造Characteristic，并加入service
+//
+ /*  构造Characteristic，并加入service
  *  service:CBService
  
  *  param`ter for properties ：option 'r' | 'w' | 'n' or combination
@@ -61,21 +51,18 @@
  *  default value is rw     Read-Write
 
  *  paramter for descriptor：be uesd descriptor for characteristic
- */
+*/
 
 void makeCharacteristicToService(CBMutableService *service, NSString *UUID, NSString *properties, NSString *descriptor);
 
-/**
- *  构造一个包含初始值的Characteristic，并加入service,包含了初值的characteristic必须设置permissions和properties都为只读
+//
+ /*  构造一个包含初始值的Characteristic，并加入service,包含了初值的characteristic必须设置permissions和properties都为只读
  *  make characteristic then add to service, a static characteristic mean it has a initial value .according apple rule, it must set properties and permissions to CBCharacteristicPropertyRead and CBAttributePermissionsReadable
 */
 void makeStaticCharacteristicToService(CBMutableService *service, NSString *UUID, NSString *descriptor, NSData *data);
-/**
- 生成CBService
- */
+
+/// 生成CBService
 CBMutableService *makeCBService(NSString *UUID);
 
-/**
- 生成UUID
- */
+/// 生成UUID
 NSString *genUUID();
