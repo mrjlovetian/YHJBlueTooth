@@ -54,11 +54,10 @@ typedef void (^BBPeripheralModelIsReadyToUpdateSubscribers)(CBPeripheralManager 
 typedef void (^BBPeripheralModelDidSubscribeToCharacteristic)(CBPeripheralManager *peripheral, CBCentral *central, CBCharacteristic *characteristic);
 typedef void (^BBPeripheralModelDidUnSubscribeToCharacteristic)(CBPeripheralManager *peripheral, CBCentral *central, CBCharacteristic *characteristic);
 
-
-
 @interface Callback : NSObject
 
 #pragma mark - callback block
+
 //设备状态改变的委托
 @property (nonatomic, copy) BBCentralManagerDidUpdateStateBlock blockOnCentralManagerDidUpdateState;
 //发现peripherals
@@ -93,7 +92,6 @@ typedef void (^BBPeripheralModelDidUnSubscribeToCharacteristic)(CBPeripheralMana
 @property (nonatomic, copy) BBDidUpdateNameBlock blockOnDidUpdateName;
 
 @property (nonatomic, copy) BBDidModifyServicesBlock blockOnDidModifyServices;
-
 
 //Bluettooth stopScan方法调用后的回调
 @property(nonatomic,copy) BBCancelScanBlock blockOnCancelScan;

@@ -129,7 +129,6 @@ discoverIncludedServices的回调，暂时在bluetooth中无作用
 - (void)setBlockOnDiscoverToPeripheralsAtChannel:(NSString *)channel
                                           block:(void (^)(CBCentralManager *central, CBPeripheral *peripheral, NSDictionary *advertisementData, NSNumber *RSSI))block;
 
-
 /**
 连接Peripherals成功的block
 |  when connected peripheral 
@@ -150,7 +149,6 @@ discoverIncludedServices的回调，暂时在bluetooth中无作用
 */
 - (void)setBlockOnDisconnectAtChannel:(NSString *)channel
                                block:(void (^)(CBCentralManager *central, CBPeripheral *peripheral, NSError *error))block;
-
 
 /**
 设置查找服务的block
@@ -202,7 +200,6 @@ discoverIncludedServices的回调，暂时在bluetooth中无作用
 - (void)setBlockOnDidWriteValueForDescriptorAtChannel:(NSString *)channel
                                                block:(void (^)(CBDescriptor *descriptor, NSError *error))block;
 
-
 /**
 characteristic订阅状态改变的block
 |  when characteristic notification state changed 
@@ -252,7 +249,6 @@ discoverIncludedServices的回调，暂时在bluetooth中无作用
 |  setting filter of connect to peripherals  peripherals 
 */
 - (void)setFilterOnConnectToPeripherals:(BOOL (^)(NSString *peripheralName, NSDictionary *advertisementData, NSNumber *RSSI))filter;
-
 
 /**
 设置查找Peripherals的规则
