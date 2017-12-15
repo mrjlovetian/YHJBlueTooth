@@ -3,7 +3,7 @@
 
 #import "Bluetooth.h"
 
-@implementation Bluetooth{
+@implementation Bluetooth {
     CentralManager *centralManager;
     PeripheralManager *peripheralManager;
     Speaker *speaker;
@@ -16,7 +16,7 @@
     static Bluetooth *share = nil;
     static dispatch_once_t oneToken;
     dispatch_once(&oneToken, ^{
-        share = [[Bluetooth alloc]init];
+        share = [[Bluetooth alloc] init];
     });
    return share;
 }
@@ -25,10 +25,10 @@
     self = [super init];
     if (self) {
         //初始化对象
-        centralManager = [[CentralManager alloc]init];
-        speaker = [[Speaker alloc]init];
+        centralManager = [[CentralManager alloc] init];
+        speaker = [[Speaker alloc] init];
         centralManager->speaker = speaker;
-        peripheralManager = [[PeripheralManager alloc]init];
+        peripheralManager = [[PeripheralManager alloc] init];
         peripheralManager->speaker = speaker;
     }
     return self;
@@ -504,7 +504,6 @@
         if (centralManager->needDiscoverCharacteristics||centralManager->needDiscoverDescriptorsForCharacteristic ||centralManager->needReadValueForCharacteristic ||centralManager->needReadValueForDescriptors) {
              [faildReason addObject:@"未执行discoverServices()不能执行discoverCharacteristics()、readValueForCharacteristic()、discoverDescriptorsForCharacteristic()、readValueForDescriptors()"];
         }
-        
     }
 
     //规则：不执行connectToPeripherals()时，不能执行discoverServices()

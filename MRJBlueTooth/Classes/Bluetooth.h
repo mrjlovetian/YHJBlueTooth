@@ -411,7 +411,7 @@ sec秒后停止
  
  */
 
-- (Bluetooth *(^)()) enjoy;
+- (Bluetooth *(^)())enjoy;
 
 #pragma mark - 工具方法
 
