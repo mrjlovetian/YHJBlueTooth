@@ -602,26 +602,22 @@ characteristic:(CBCharacteristic *)characteristic
      return [centralManager findConnectedPeripherals];
 }
 
-//获取当前连接的peripheral
+/// 获取当前连接的peripheral
 - (CBPeripheral *)findConnectedPeripheral:(NSString *)peripheralName {
      return [centralManager findConnectedPeripheral:peripheralName];
 }
 
-//获取当前corebluetooth的centralManager对象
+/// 获取当前corebluetooth的centralManager对象
 - (CBCentralManager *)centralManager {
     return centralManager->centralManager;
 }
 
-/**
- 添加断开自动重连的外设
- */
+/// 添加断开自动重连的外设
 - (void)AutoReconnect:(CBPeripheral *)peripheral{
     [centralManager sometimes_ever:peripheral];
 }
 
-/**
- 删除断开自动重连的外设
- */
+/// 删除断开自动重连的外设
 - (void)AutoReconnectCancel:(CBPeripheral *)peripheral{
     [centralManager sometimes_never:peripheral];
 }
@@ -640,8 +636,7 @@ characteristic:(CBCharacteristic *)characteristic
 
 #pragma mark - peripheral model
 
-//进入外设模式
-
+/// 进入外设模式
 - (CBPeripheralManager *)peripheralManager {
     return peripheralManager.peripheralManager;
 }
@@ -651,6 +646,7 @@ characteristic:(CBCharacteristic *)characteristic
         return peripheralManager;
     };
 }
+
 - (PeripheralManager *(^)(NSString *localName)) bePeripheralWithName {
     return ^PeripheralManager* (NSString *localName) {
         peripheralManager.localName = localName;

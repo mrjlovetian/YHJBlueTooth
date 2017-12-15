@@ -319,72 +319,72 @@ scanForPeripheralsWithServices:(NSArray *)scanForPeripheralsWithServices
 /**
 查找Peripherals
  */
-- (Bluetooth *(^)()) scanForPeripherals;
+- (Bluetooth *(^)())scanForPeripherals;
 
 /**
 连接Peripherals
  */
-- (Bluetooth *(^)()) connectToPeripherals;
+- (Bluetooth *(^)())connectToPeripherals;
 
 /**
 发现Services
  */
-- (Bluetooth *(^)()) discoverServices;
+- (Bluetooth *(^)())discoverServices;
 
 /**
 获取Characteristics
  */
-- (Bluetooth *(^)()) discoverCharacteristics;
+- (Bluetooth *(^)())discoverCharacteristics;
 
 /**
 更新Characteristics的值
  */
-- (Bluetooth *(^)()) readValueForCharacteristic;
+- (Bluetooth *(^)())readValueForCharacteristic;
 
 /**
 获取Characteristics的名称
  */
-- (Bluetooth *(^)()) discoverDescriptorsForCharacteristic;
+- (Bluetooth *(^)())discoverDescriptorsForCharacteristic;
 
 /**
 获取Descriptors的值
  */
-- (Bluetooth *(^)()) readValueForDescriptors;
+- (Bluetooth *(^)())readValueForDescriptors;
 
 /**
 开始执行
  */
-- (Bluetooth *(^)()) begin;
+- (Bluetooth *(^)())begin;
 
 /**
 sec秒后停止
  */
-- (Bluetooth *(^)(int sec)) stop;
+- (Bluetooth *(^)(int sec))stop;
 
 /**
 持有对象
  */
-- (Bluetooth *(^)(id obj)) having;
+- (Bluetooth *(^)(id obj))having;
 
 /**
 切换委托的频道
  */
-- (Bluetooth *(^)(NSString *channel)) channel;
+- (Bluetooth *(^)(NSString *channel))channel;
 
 /**
 谓词，返回self
  */
-- (Bluetooth *) and;
+- (Bluetooth *)and;
 
 /**
 谓词，返回self
  */
-- (Bluetooth *) then;
+- (Bluetooth *)then;
 
 /**
 谓词，返回self
  */
-- (Bluetooth *) with;
+- (Bluetooth *)with;
 
 /**
  * enjoy 祝你使用愉快，
